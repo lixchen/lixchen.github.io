@@ -4,6 +4,6 @@
 
 用法: 
 
-- 示例: [onchange.html](change.html)
+- 示例: [onchange.html](onchange.html)
 - 下拉菜单内容改变时触发   
 - 文本框内容发生改变时触发
