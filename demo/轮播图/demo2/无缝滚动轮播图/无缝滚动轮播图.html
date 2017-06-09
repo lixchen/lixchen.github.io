@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		ul,ol,li {
+			list-style: none;
+		}
+		/*这个盒子用于设置外面的边框*/
+    /*但是overflow:hidden属性不能设置在这里
+    不然会有别的图片漏出来*/
+    /*#boxout {
+      width: 500px;
+      height: 200px;
+      border: 1px solid #ddd;
+      margin: 100px auto;
+      padding: 7px;
+  }*/
+  /*在这里设置overflow:hidden属性隐藏其他图片*/
+    /*#boxin {
+      width: 500px;
+      height: 200px;
+      overflow: hidden;
+    }
+    #boxin ul {
+      width: 3000px;
+    }
+    #boxin ul li {
+      float: left;
+  }*/
+  /*只是样式的话上面的就可以了,但是因为要滚动,所以要给他们设置定位*/
+  /*下面是合理的样式*/
+  #boxout {
+  	width: 500px;
+  	height: 200px;
+  	border: 1px solid #ddd;
+  	margin: 100px auto;
+  	padding: 7px;
+  	position: relative;
+  }
+  /*在这里设置overflow:hidden属性隐藏其他图片*/
+  #boxin {
+  	width: 500px;
+  	height: 200px;
+  	/*overflow: hidden;*/
+  	position: relative;
+  	left: 0;
+  	top: 0;
+  }
+  #boxin ul {
+  	width: 3000px;
+  	position: absolute;
+  	left: 0;
+  	top: 0;
+  }
+  #boxin ul li {
+  	float: left;
+  	width: 500px;
+  	height: 200px;
+  }
+  #boxout ol {
+  	position: absolute;
+  	right: 10px;
+  	bottom: 10px;
+  	color: #fff;
+  }
+  #boxout ol li {
+  	float: left;
+  	height: 20px;
+  	width: 20px;
+  	line-height: 20px;
+  	text-align: center;
+  	border: 1px solid #ddd;
+  	margin-left: 10px;
+  	cursor: pointer;
+  }
+  .current {
+  	background: #e00;
+  }
+</style>
+</head>
+<body>
+	<div id="boxout">
+		<div id="boxin">
+			<ul>
+				<li><img src="images/1.jpg"></li>
+				<li><img src="images/2.jpg"></li>
+				<li><img src="images/3.jpg"></li>
+				<li><img src="images/4.jpg"></li>
+				<li><img src="images/5.jpg"></li>
+			</ul>
+		</div>
+
+      <!-- <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ol> -->
+
+</div>
+</body>
+</html>
+<script type="text/javascript">
+	function move(obj,distance,step) {
+  //这里把timer定义为obj的属性更好
+  clearInterval(obj.timer);
+  var step = obj.offsetLeft < distance ? step : -step;
+  obj.timer = setInterval(function () {
+  	var result = distance - obj.offsetLeft;
+  	obj.style.left = obj.offsetLeft + step + "px";
+  	if (Math.abs(result) <= step) {
+  		clearInterval(obj.timer);
+  		obj.style.left = distance + "px";
+  	}
+  }, 30);
+}
+
+function $(id) {
+	return document.getElementById(id);
+}
+//插入的时候不可以这样插入,因为已经存在的元素
+//在插入的时候只会改变位置,不会增加
+//需要克隆
+// var boxin = $("boxin");
+// var ul = boxin.children[0];
+// var list = ul.children;
+// ul.appendChild(list[0]);
+
+//无缝滚动的原理就是在最后再插入一张图片(跟第一张相同)
+//插入图片
+var boxout = $("boxout");
+var boxin = $("boxin");
+var ul = boxin.children[0];
+var list = ul.children;
+ul.appendChild(list[0].cloneNode(true));
+
+//创建 ol和 小li
+var ol = document.createElement("ol");
+for (var i = 1; i < list.length; i++) {
+  // 注意这里的i是从1开始的,因为图片有6张,但实际只需要5个小li
+  var li = document.createElement("li");
+  li.innerHTML = i;
+  ol.appendChild(li);
+}
+boxout.appendChild(ol);
+ol.children[0].className = "current";
+
+for (var i = 0; i < ol.children.length; i++) {
+	ol.children[i].onmouseover = function (num) {
+		return function () {
+			for (var j = 0; j < ol.children.length; j++) {
+				ol.children[j].className = "";
+			}
+			ol.children[num].className = "current";
+			move(ul,-num*list[0].offsetWidth,40);
+      //list[0].offsetWidth一张图片的宽度
+  };
+  square = picindex = num;
+}(i);
+}
+
+
+//设置自动轮播 此时就用到了添加的最后一张图
+var key = 0;
+var square = 0;
+var timer = null;
+timer = setInterval(autoplay, 1000);
+
+function autoplay() {
+	key++;
+	if (key>list.length-1) {
+		ul.style.left = 0;
+		key = 1;
+	}
+	move(ul,-key*500,40);
+	square++;
+	if (square>ol.children.length-1) {
+		square = 0;
+	}
+    for(var i=0;i<ol.children.length;i++)   // 先清除所有的
+    {
+    	ol.children[i].className = "";
+    }
+    ol.children[square].className = "current";  // 留下当前的
+}
+boxout.onmouseover = function () {
+	clearInterval(timer);
+}
+boxout.onmouseout = function () {
+	timer = setInterval(autoplay, 800);
+}
+</script>
