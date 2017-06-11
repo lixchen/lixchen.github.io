@@ -21,7 +21,7 @@
             margin-top: 50px;
             margin-left: auto;
             margin-right: auto;
-            overflow: hidden;
+            /*overflow: hidden;*/
             height: 200px;
             /*在这里设置了一个outline 省去了外面再套一层div*/
             outline: 2px solid #333;
@@ -60,7 +60,6 @@
         var box = document.getElementById('box');
         var ul = box.children[0];
         var lis = ul.children;
-        var count = 0;
 
         var timer = setInterval(function(){
             ul.style.left = ul.offsetLeft - 500 + 'px';
