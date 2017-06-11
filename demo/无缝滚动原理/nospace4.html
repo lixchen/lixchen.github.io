@@ -4,57 +4,7 @@
 <head>
     <meta charset='utf-8'>
     <title>nospace4</title>
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    
-    #box {
-        background-color: #fff;
-        width: 102px;
-        height: 102px;
-        margin: 50px auto;
-        position: relative;
-        overflow: hidden;
-        border: 1px solid #333;
-        position: relative;
-    }
-    
-    ul {
-        list-style: none;
-        width: 2000px;
-        overflow: hidden;
-        position: absolute;
-        left: 0;
-    }
-    
-    li {
-        float: left;
-        width: 100px;
-        height: 100px;
-        background-color: #333;
-        border: 5px solid #fff;
-        color: #fff;
-        font-size: 50px;
-        font-weight: 700;
-        text-align: center;
-        line-height: 100px;
-    }
-    
-    #p {
-        width: 50px;
-        height: 50px;
-        background: #333;
-        color: #fff;
-        font-weight: 700;
-        font-size: 24px;
-        line-height: 50px;
-        text-align: center;
-        margin: 0 auto;
-    }
-    </style>
+    <link rel="stylesheet" href="../main.css">
 </head>
 
 <body>
@@ -80,7 +30,7 @@
     var count = 0;
 
     function move(elem, step) {
-        elem.timer = setInterval(function () {
+        elem.timer = setInterval(function() {
             elem.style.left = elem.offsetLeft - step + 'px';
             if (elem.offsetLeft <= -liW * count) {
                 clearInterval(elem.timer);
@@ -90,11 +40,11 @@
     };
 
     function autoplay() {
-        if (Math.abs(ul.offsetLeft) >= liW*(lis.length-1)) {
+        if (Math.abs(ul.offsetLeft) >= liW * (lis.length - 1)) {
             count = 0;
             ul.style.left = 0;
         }
-        move(ul, liW/10); 
+        move(ul, liW / 10);
     }
 
     timer = setInterval(autoplay, 1000);

@@ -6,87 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>无缝滚动</title>
+    <link rel="stylesheet" href="../../main.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-        }
-
-        ul,
-        ol {
-            list-style: none;
-        }
-
-        ol {
-            position: absolute;
-            right: 10px;
-            bottom: 5px;
-        }
-
-        .redol {
-            background-color: #e00;
-        }
-
-        ol li {
-            color: #fff;
-            background: transparent;
-            border: 1px solid #fff;
-            width: 20px;
-            height: 20px;
-            float: left;
-            text-align: center;
-            cursor: pointer;
-            margin-left: 5px;
-        }
-
-        #box {
-            width: 500px;
-            margin-top: 50px;
-            margin-left: auto;
-            margin-right: auto;
-            /*overflow: hidden;*/
-            height: 200px;
-            /*在这里设置了一个outline 省去了外面再套一层div*/
-            outline: 2px solid #333;
-            border: 5px solid #fff;
-            position: relative;
-        }
-
-        #box ul {
-            width: 5000px;
-            position: absolute;
-        }
-
-        #box li {
-            float: left;
-        }
-
-        #box li img {
-            display: block;
-        }
-
-        #p {
-            width: 50px;
-            height: 50px;
-            background: #333;
-            color: #fff;
-            font-weight: 700;
-            font-size: 24px;
-            line-height: 50px;
-            text-align: center;
-            margin: 0 auto;
-        }
+    ol {
+        position: absolute;
+        right: 10px;
+        bottom: 10px;
+    }
+    .redol {
+        background-color: #e00;
+    }
+    
+    ol li {
+        color: #fff;
+        background: transparent;
+        border: 1px solid #fff;
+        width: 20px;
+        height: 20px;
+        float: left;
+        text-align: center;
+        line-height: 20px;
+        font-size: 10px;
+        font-weight: 400;
+        cursor: pointer;
+        margin-left: 5px;
+    }
     </style>
 </head>
 
 <body>
     <div id="box">
         <ul>
-            <li><img src="images/1.jpg" alt="pic"></li>
-            <li><img src="images/2.jpg" alt="pic"></li>
-            <li><img src="images/3.jpg" alt="pic"></li>
-            <li><img src="images/4.jpg" alt="pic"></li>
-            <li><img src="images/5.jpg" alt="pic"></li>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
         </ul>
     </div>
 
