@@ -1,95 +1,53 @@
-@charset "UTF-8";
-body {
-    background-color: #333;
-}
-#box {
-    width: 660px;
-    margin: 0 auto;
-    margin-top: 50px;
-    height: 330px;
-    position: relative;
-}
-#box .box-piclist {
-    width: 100%;
-}
-#box .box-piclist li {
-    display: none;
-}
-#box .box-piclist .show,
-#box .box-textlist .show {
-    display: block;
-}
-#box .box-textlist {
-    position: absolute;
-    left: 50px;
-    bottom: 60px;
-    height: 20px;
-}
-#box .box-textlist li {
-    display: none;
-}
-#box .box-textlist h2 {
-    font-size: 16px;
-}
-#box .box-textlist a {
-    text-decoration: none;
-    color: #fff;
-    line-height: 20px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-#box .box-icolist {
+#box {
+    background-color: #fff;
+    width: 302px;
+    height: 152px;
+    margin: 50px auto;
+    position: relative;
+    /*overflow: hidden;*/
+    border: 1px solid #333;
+    position: relative;
+}
+
+ul,
+ol {
+    list-style: none;
+}
+
+ul {
+    width: 2000px;
+    overflow: hidden;
     position: absolute;
     left: 0;
-    bottom: 10px;
-    width: 511px;
-    height: 40px;
-    overflow: hidden;
-    margin-left: 10px;
 }
-#box .box-icolist ul {
-    width: 2000px;
-    position: absolute;
-}
-#box .box-icolist li {
+
+li {
     float: left;
-    margin-right: 5px;
-}
-#box .box-icolist li a {
-    display: block;
-}
-#box .box-icolist li img {
-    display: block;
-    width: 68px;
-    height: 40px;
-    border: 2px solid #ddd;
-    cursor: pointer;
-}
-#box .box-icolist li img.high {
+    width: 300px;
+    height: 150px;
+    background-color: #333;
     border: 5px solid #fff;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 700;
+    text-align: center;
+    line-height: 150px;
 }
-#box #left, #box #right {
-    text-decoration: none;
-    display: block;
-    position: absolute;
-    right: 75px;
-    bottom: 20px;
-    width: 20px;
-    height: 20px;
-    border: 4px solid #fff;
-    border-radius: 3px;
-    transform: rotate(45deg);
-}
-#box #left {
-    border-right: none;
-    border-top: none;
-}
-#box #right {
-    right: 45px;
-    border-left: none;
-    border-bottom: none;
-}
-#box #left.btnchange, 
-#box #right.btnchange {
-    border-color: #ccc;
-    cursor: default;
+
+#p {
+    width: 50px;
+    height: 50px;
+    background: #333;
+    color: #fff;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 50px;
+    text-align: center;
+    margin: 0 auto;
 }
