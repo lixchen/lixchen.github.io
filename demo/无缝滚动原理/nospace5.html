@@ -97,8 +97,8 @@
     };
     function autoplay() {
         if (Math.abs(ul.offsetLeft) >= liW*(lis.length-1)) {
-            count = 1;
             ul.style.left = 0;
+            count = 1;
         }
         move(ul, liW/10, {left: -liW * count + ulX});
         count++;
