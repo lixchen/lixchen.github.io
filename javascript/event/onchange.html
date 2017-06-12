@@ -2,63 +2,161 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>OnChange</title>
+	<meta charset="UTF-8">
+	<title>OnChange</title>
+	<style>
+		/*基本样式*/
+
+		h1 {
+			text-align: center;
+		}
+
+		#container {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: space-around;
+		}
+
+		.box {
+			border: 1px solid #000;
+			padding: 15px;
+			margin: 5px;
+		}
+
+		h3 {
+			margin: 0;
+			padding: 0;
+			line-height: 24px;
+		}
+		/*内容样式*/
+	</style>
 </head>
 
 <body>
-        	<fieldset>
-        	    <legend>select</legend>
-        	    <p id="sp">触发change事件</p>
-        	    <select name="select" id="select">
+	<h1>Event</h1>
+	<div id="container">
+		<!--onchange-->
+		<div class="box" id="changebox">
+			<h3>onchange Event</h3>
+			<fieldset>
+				<legend>dropdown</legend>
+				<p data-change-content="content">输入内容触发change事件</p>
+				<select name="select" data-change='change'>
         	        <option value="1">1</option>
         	        <option value="2">2</option>
         	        <option value="3">3</option>
         	        <option value="4">4</option>
         	        <option value="5">5</option>
         	    </select>
-        	</fieldset>
-        	<fieldset>
-        	    <legend>textarea</legend>
-        	    <p id="tp">触发change事件</p>            <textarea name="textarea" id="textarea" cols="30" rows="10"></textarea>
-        	</fieldset>
-        	<fieldset>
-        	    <legend>input</legend>
-        	    <p id="ip">触发change事件</p>
-        	    <input type="text" id="input">
-        	</fieldset>
-    <script>
-    	var select = document.getElementById('select');
-    	var textarea = document.getElementById('textarea');
-    	var input = document.getElementById('input');
-    	var ip = document.getElementById('ip');
-    	var sp = document.getElementById('sp');
-    	var tp = document.getElementById('tp');
-    	function changeHandler() {
-    		// if...else 写法
-    		// if (event.target === select) {
-    		// 	sp.textContent = `你选择了: ${select.value}`;
-    		// } else if (event.target === textarea) {
-    		// 	tp.textContent = `你输入了: '${textarea.value}'`;
-    		// } else if (event.target === input) {
-    		// 	ip.textContent = `你输入了: '${input.value}'`;
-    		// }
-    		
-    		// switch 写法
-    		switch(event.target) {
-    			case select:
-    				sp.textContent = `你选择了: ${select.value}`;
-    				break;
-    			case textarea:
-    				tp.textContent = `你输入了: '${textarea.value}'`;
-    				break;
-    			case input:
-    				ip.textContent = `你输入了: '${input.value}'`;
-    				break;
-    		}
-    	}
-    	document.addEventListener('change', changeHandler);
-    </script>
+			</fieldset>
+			<fieldset>
+				<legend>textarea</legend>
+				<p data-change-content="content">输入内容触发change事件</p>
+				<textarea name="textarea" cols="20" rows="2" data-change="change"></textarea>
+			</fieldset>
+			<fieldset>
+				<legend>input</legend>
+				<p data-change-content="content">输入内容触发change事件</p>
+				<input type="text" data-change="change">
+			</fieldset>
+		</div>
+		<!--onclick-->
+		<div class="box" id="clickbox">
+			<h3>onclick Event</h3>
+			<fieldset>
+				<legend>first click</legend>
+				<div>
+					<p>点击框内弹出窗口</p>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>second click</legend>
+				<div>
+					<p>点击改变背景颜色</p>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>third click</legend>
+				<div>
+					<p>弹出层</p>
+				</div>
+			</fieldset>
+		</div>
+		<!--onmouseover/onmouseout-->
+		<div class="box" id="overoutbox">
+			<h3>onmouseover/onmouseout Event</h3>
+			<fieldset>
+				<legend>third click</legend>
+				<div>
+					<p>鼠标移入移出改变透明度</p>
+					<span>图片</span>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>third click</legend>
+				<div>
+					<p>鼠标移入停止计时</p>
+					<p>鼠标移出恢复计时</p>
+					<span>计时器</span>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>third click</legend>
+				<div>
+					<p>查看高清美女</p>
+				</div>
+			</fieldset>
+		</div>
+		<!--onmousemove-->
+		<div class="box" id="movebox">
+			<h3>onmousemove Event</h3>
+			<fieldset>
+				<legend>third click</legend>
+				<div>
+					<p>鼠标移动在框内移动小红点跟着走</p>
+					<p>绝对坐标</p>
+					<p>相对坐标</p>
+					<button>锁定水平方向</button>
+					<button>锁定垂直方向</button>
+					<span>小红点</span>
+					<div>
+						<p>进来出不去, 出去进不来</p>
+						<button>我要进来</button>
+						<button>放我出去</button>
+					</div>
+				</div>
+			</fieldset>
+		</div>
+		<!--onmousedown/onmouseup-->
+		<div class="box" id="downupbox">
+			<h3>onmousedown/onmouseup Event</h3>
+		</div>
+	</div>
+
+
+	<script>
+		function $(id) {
+			return document.getElementById(id)
+		}
+		// 获取每个元素块
+		var changebox = $("changebox");
+		var clickbox = $("clickbox");
+		var overoutbox = $("overoutbox");
+		var movebox = $("movebox");
+		var downupbox = $("downupbox");
+		function change() {
+			// 获取触发change事件的元素和事件处理程序要操作的元素
+			var changes = changebox.querySelectorAll('[data-change="change"]');
+			var contents = changebox.querySelectorAll('[data-change-content="content"]');
+			for (var i = 0; i < changes.length; i++) {
+				// 保存会触发事件的元素的索引
+				changes[i].index = i;
+			}
+			// 如果触发事件, 那么执行事件目标对应的处理程序(也就是改变对应的p元素的内容)
+			event.target && (contents[event.target.index].textContent = event.target.value);
+		}
+		changebox.addEventListener("change", change, false);
+	</script>
 </body>
 
 </html>
