@@ -86,6 +86,14 @@
 			display: block;
 			float: right;
 		}
+		#overoutbox .img-wrapper {
+			position: relative;
+		}
+		#overoutbox img + img {
+			position: absolute;
+			top: -120px;
+			right: 99px;
+		}
 	</style>
 </head>
 
@@ -162,9 +170,10 @@
 			</fieldset>
 			<fieldset>
 				<legend>third click</legend>
-				<div>
+				<div class="img-wrapper">
 					<p>查看高清图片(其实不是高清的)</p>
 					<img src="lxc.png" alt="pic">
+					<img src="lxc-large.png" alt="pic">
 				</div>
 			</fieldset>
 		</div>
