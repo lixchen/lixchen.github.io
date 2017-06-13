@@ -29,6 +29,63 @@
 			line-height: 24px;
 		}
 		/*内容样式*/
+
+		#clickbox {
+			position: relative;
+		}
+
+		.cover {
+			width: 100%;
+			height: 100%;
+			display: block;
+			position: absolute;
+			left: 0;
+			top: 0;
+			background-color: #000;
+			opacity: .7;
+			display: none;
+		}
+
+		.cover>span {
+			position: absolute;
+			right: 10px;
+			top: 10px;
+			color: #fff;
+			cursor: pointer;
+		}
+
+		#overoutbox .time-wrapper {
+			position: relative;
+		}
+
+		#overoutbox span {
+			display: block;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			line-height: 30px;
+			background: #333;
+			margin: 5px;
+			float: left;
+			color: #fff;
+			opacity: 0.1;
+			cursor: pointer;
+		}
+
+		#overoutbox .time {
+			width: 150px;
+			height: 50px;
+			line-height: 50px;
+			opacity: 1;
+			position: absolute;
+			right: 10px;
+			top: 0;
+		}
+
+		#overoutbox img {
+			display: block;
+			float: right;
+		}
 	</style>
 </head>
 
@@ -63,47 +120,51 @@
 		<!--onclick-->
 		<div class="box" id="clickbox">
 			<h3>onclick Event</h3>
-			<fieldset>
+			<fieldset data-click="alert">
 				<legend>first click</legend>
-				<div>
-					<p>点击框内弹出窗口</p>
-				</div>
+				<p>点击空白处弹出窗口(文字使用p标签,所以文字后面的空白处不起作用)</p>
 			</fieldset>
-			<fieldset>
+			<fieldset data-click="bgc">
 				<legend>second click</legend>
-				<div>
-					<p>点击改变背景颜色</p>
-				</div>
+				<p data-click='color'>点击改变文字颜色, 点击空白处改变背景颜色</p>
 			</fieldset>
-			<fieldset>
+			<fieldset data-click="cover">
 				<legend>third click</legend>
-				<div>
-					<p>弹出层</p>
-				</div>
+				<p>点击空白处弹出遮罩</p>
 			</fieldset>
+			<div class="cover"><span data-click="close">X</span></div>
 		</div>
 		<!--onmouseover/onmouseout-->
 		<div class="box" id="overoutbox">
 			<h3>onmouseover/onmouseout Event</h3>
 			<fieldset>
 				<legend>third click</legend>
-				<div>
-					<p>鼠标移入移出改变透明度</p>
-					<span>图片</span>
+				<p>鼠标移入移出改变透明度</p>
+				<div data-overout="opacity">
+					<span data-overout="opacity">1</span>
+					<span data-overout="opacity">2</span>
+					<span data-overout="opacity">3</span>
+					<span data-overout="opacity">4</span>
+					<span data-overout="opacity">5</span>
+					<span data-overout="opacity">6</span>
+					<span data-overout="opacity">7</span>
+					<span data-overout="opacity">8</span>
+					<span data-overout="opacity">9</span>
 				</div>
 			</fieldset>
 			<fieldset>
 				<legend>third click</legend>
-				<div>
+				<div class="time-wrapper">
 					<p>鼠标移入停止计时</p>
 					<p>鼠标移出恢复计时</p>
-					<span>计时器</span>
+					<span class="time" data-overout="time"></span>
 				</div>
 			</fieldset>
 			<fieldset>
 				<legend>third click</legend>
 				<div>
-					<p>查看高清美女</p>
+					<p>查看高清图片(其实不是高清的)</p>
+					<img src="lxc.png" alt="pic">
 				</div>
 			</fieldset>
 		</div>
@@ -139,11 +200,21 @@
 			return document.getElementById(id)
 		}
 		// 获取每个元素块
-		var changebox = $("changebox");
-		var clickbox = $("clickbox");
-		var overoutbox = $("overoutbox");
-		var movebox = $("movebox");
-		var downupbox = $("downupbox");
+		var changebox = $('changebox');
+		var clickbox = $('clickbox');
+		var overoutbox = $('overoutbox');
+		var movebox = $('movebox');
+		var downupbox = $('downupbox');
+		var cover = document.getElementsByClassName('cover')[0];
+		var time = overoutbox.getElementsByClassName('time')[0];
+
+		function nowTime() {
+			var date = new Date();
+			time.innerHTML = `现在是 ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`;
+		}
+		var timer = setInterval(nowTime, 1000);
+
+		// change事件处理程序
 		function change() {
 			// 获取触发change事件的元素和事件处理程序要操作的元素
 			var changes = changebox.querySelectorAll('[data-change="change"]');
@@ -155,6 +226,46 @@
 			// 如果触发事件, 那么执行事件目标对应的处理程序(也就是改变对应的p元素的内容)
 			event.target && (contents[event.target.index].textContent = event.target.value);
 		}
+
+		// click事件处理程序
+		function click() {
+			var clicks = clickbox.querySelectorAll('[data-click]');
+			var dataValue = event.target.dataset.click;
+			switch (dataValue) {
+				case 'alert':
+					alert('You click the first box');
+					break;
+				case 'bgc':
+					event.target.style.backgroundColor = '#546';
+					break;
+				case 'color':
+					event.target.style.color = '#fff';
+					break;
+				case 'cover':
+					cover.style.display = 'block';
+					break;
+				case 'close':
+					cover.style.display = 'none';
+					break;
+				default:
+					break;
+			}
+		}
+
+		//mouseover/mouseout事件
+		function over() {
+			var overouts = overoutbox.querySelectorAll('[data-overout]');
+			event.target.dataset.overout === 'time' && clearInterval(timer);
+			event.target.dataset.overout === 'opacity' && (event.target.style.opacity = 1);
+		}
+		function out() {
+			var overouts = overoutbox.querySelectorAll('[data-overout]');
+			event.target.dataset.overout === 'time' && (timer = setInterval(nowTime, 1000));
+			event.target.dataset.overout === 'opacity' && (event.target.style.opacity = .1);
+		}
+		overoutbox.addEventListener('mouseover', over, false);
+		overoutbox.addEventListener('mouseout', out, false);
+		clickbox.addEventListener("click", click, false);
 		changebox.addEventListener("change", change, false);
 	</script>
 </body>
