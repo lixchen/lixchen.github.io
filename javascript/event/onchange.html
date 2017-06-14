@@ -2,283 +2,287 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<title>OnChange</title>
-	<style>
-		/*基本样式*/  
+    <meta charset="UTF-8">
+    <title>OnChange</title>
+    <style>
+        /*基本样式*/
+
         body {
-            font-family: arial,cambria,sans-serif;
+            font-family: Georgia, arial, sans-serif;
         }
-		h1 {
-			text-align: center;
-		}
 
-		#container {
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: space-around;
-		}
+        h1 {
+            text-align: center;
+        }
 
-		.box {
-			border: 1px solid #000;
-			padding: 15px;
-			margin: 5px;
-		}
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
 
-		h3 {
-			margin: 0;
-			padding: 0;
-			line-height: 24px;
-		}
-		/*内容样式*/
+        .box {
+            border: 1px solid #000;
+            padding: 15px;
+            margin: 5px;
+        }
 
-		#clickbox {
-			position: relative;
-		}
+        h3 {
+            margin: 0;
+            padding: 0;
+            line-height: 24px;
+        }
+        /*内容样式*/
 
-		.cover {
-			width: 100%;
-			height: 100%;
-			display: block;
-			position: absolute;
-			left: 0;
-			top: 0;
-			background-color: #000;
-			opacity: .7;
-			display: none;
-		}
+        #clickbox {
+            position: relative;
+        }
 
-		.cover>span {
-			position: absolute;
-			right: 10px;
-			top: 10px;
-			color: #fff;
-			cursor: pointer;
-		}
+        .cover {
+            width: 100%;
+            height: 100%;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-color: #000;
+            opacity: .7;
+            display: none;
+        }
 
-		#overoutbox .time-wrapper {
-			position: relative;
-		}
+        .cover>span {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            color: #fff;
+            cursor: pointer;
+        }
 
-		#overoutbox span {
-			display: block;
-			width: 30px;
-			height: 30px;
-			text-align: center;
-			line-height: 30px;
-			background: #333;
-			margin: 5px;
-			float: left;
-			color: #fff;
-			opacity: 0.1;
-			cursor: pointer;
-		}
+        #overoutbox .time-wrapper {
+            position: relative;
+        }
 
-		#overoutbox .time {
-			width: 150px;
-			height: 50px;
-			line-height: 50px;
-			opacity: 1;
-			position: absolute;
-			right: 10px;
-			top: 0;
-		}
+        #overoutbox span {
+            display: block;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background: #333;
+            margin: 5px;
+            float: left;
+            color: #fff;
+            opacity: 0.1;
+            cursor: pointer;
+        }
 
-		#overoutbox img {
-			display: block;
-			float: right;
-		}
-		#overoutbox .img-wrapper {
-			position: relative;
-		}
-		#overoutbox img + img {
-			position: absolute;
-			top: -120px;
-			right: 99px;
-		}
-	</style>
+        #overoutbox .time {
+            width: 150px;
+            height: 50px;
+            line-height: 50px;
+            opacity: 1;
+            position: absolute;
+            right: 10px;
+            top: 0;
+        }
+
+        #overoutbox img {
+            display: block;
+            float: right;
+        }
+
+        #overoutbox .img-wrapper {
+            position: relative;
+        }
+
+        #overoutbox img+img {
+            position: absolute;
+            top: -120px;
+            right: 99px;
+        }
+    </style>
 </head>
 
 <body>
-	<h1>Event</h1>
-	<div id="container">
-		<!--onchange-->
-		<div class="box" id="changebox">
-			<h3>onchange Event</h3>
-			<fieldset>
-				<legend>dropdown</legend>
-				<p data-change-content="content">输入内容触发change事件</p>
-				<select name="select" data-change='change'>
+    <h1>Event</h1>
+    <div id="container">
+        <!--onchange-->
+        <div class="box" id="changebox">
+            <h3>onchange Event</h3>
+            <fieldset>
+                <legend>dropdown</legend>
+                <p data-change-content="content">输入内容触发change事件</p>
+                <select name="select" data-change='change'>
         	        <option value="1">1</option>
         	        <option value="2">2</option>
         	        <option value="3">3</option>
         	        <option value="4">4</option>
         	        <option value="5">5</option>
         	    </select>
-			</fieldset>
-			<fieldset>
-				<legend>textarea</legend>
-				<p data-change-content="content">输入内容触发change事件</p>
-				<textarea name="textarea" cols="20" rows="2" data-change="change"></textarea>
-			</fieldset>
-			<fieldset>
-				<legend>input</legend>
-				<p data-change-content="content">输入内容触发change事件</p>
-				<input type="text" data-change="change">
-			</fieldset>
-		</div>
-		<!--onclick-->
-		<div class="box" id="clickbox">
-			<h3>onclick Event</h3>
-			<fieldset data-click="alert">
-				<legend>first click</legend>
-				<p>点击空白处弹出窗口(文字使用p标签,所以文字后面的空白处不起作用)</p>
-			</fieldset>
-			<fieldset data-click="bgc">
-				<legend>second click</legend>
-				<p data-click='color'>点击改变文字颜色, 点击空白处改变背景颜色</p>
-			</fieldset>
-			<fieldset data-click="cover">
-				<legend>third click</legend>
-				<p>点击空白处弹出遮罩</p>
-			</fieldset>
-			<div class="cover"><span data-click="close">X</span></div>
-		</div>
-		<!--onmouseover/onmouseout-->
-		<div class="box" id="overoutbox">
-			<h3>onmouseover/onmouseout Event</h3>
-			<fieldset>
-				<legend>third click</legend>
-				<p>鼠标移入移出改变透明度</p>
-				<div data-overout="opacity">
-					<span data-overout="opacity">1</span>
-					<span data-overout="opacity">2</span>
-					<span data-overout="opacity">3</span>
-					<span data-overout="opacity">4</span>
-					<span data-overout="opacity">5</span>
-					<span data-overout="opacity">6</span>
-					<span data-overout="opacity">7</span>
-					<span data-overout="opacity">8</span>
-					<span data-overout="opacity">9</span>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>third click</legend>
-				<div class="time-wrapper">
-					<p>鼠标移入停止计时</p>
-					<p>鼠标移出恢复计时</p>
-					<span class="time" data-overout="time"></span>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>third click</legend>
-				<div class="img-wrapper">
-					<p>查看高清图片(其实不是高清的)</p>
-					<img src="lxc.png" alt="pic">
-					<img src="lxc-large.png" alt="pic">
-				</div>
-			</fieldset>
-		</div>
-		<!--onmousemove-->
-		<div class="box" id="movebox">
-			<h3>onmousemove Event</h3>
-			<fieldset>
-				<legend>third click</legend>
-				<div>
-					<p>鼠标移动在框内移动小红点跟着走</p>
-					<p>绝对坐标</p>
-					<p>相对坐标</p>
-					<button>锁定水平方向</button>
-					<button>锁定垂直方向</button>
-					<span>小红点</span>
-					<div>
-						<p>进来出不去, 出去进不来</p>
-						<button>我要进来</button>
-						<button>放我出去</button>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-		<!--onmousedown/onmouseup-->
-		<div class="box" id="downupbox">
-			<h3>onmousedown/onmouseup Event</h3>
-		</div>
-	</div>
+            </fieldset>
+            <fieldset>
+                <legend>textarea</legend>
+                <p data-change-content="content">输入内容触发change事件</p>
+                <textarea name="textarea" cols="20" rows="2" data-change="change"></textarea>
+            </fieldset>
+            <fieldset>
+                <legend>input</legend>
+                <p data-change-content="content">输入内容触发change事件</p>
+                <input type="text" data-change="change">
+            </fieldset>
+        </div>
+        <!--onclick-->
+        <div class="box" id="clickbox">
+            <h3>onclick Event</h3>
+            <fieldset data-click="alert">
+                <legend>first click</legend>
+                <p>点击空白处弹出窗口(文字使用p标签,所以文字后面的空白处不起作用)</p>
+            </fieldset>
+            <fieldset data-click="bgc">
+                <legend>second click</legend>
+                <p data-click='color'>点击改变文字颜色, 点击空白处改变背景颜色</p>
+            </fieldset>
+            <fieldset data-click="cover">
+                <legend>third click</legend>
+                <p>点击空白处弹出遮罩</p>
+            </fieldset>
+            <div class="cover"><span data-click="close">X</span></div>
+        </div>
+        <!--onmouseover/onmouseout-->
+        <div class="box" id="overoutbox">
+            <h3>onmouseover/onmouseout Event</h3>
+            <fieldset>
+                <legend>third click</legend>
+                <p>鼠标移入移出改变透明度</p>
+                <div data-overout="opacity">
+                    <span data-overout="opacity">1</span>
+                    <span data-overout="opacity">2</span>
+                    <span data-overout="opacity">3</span>
+                    <span data-overout="opacity">4</span>
+                    <span data-overout="opacity">5</span>
+                    <span data-overout="opacity">6</span>
+                    <span data-overout="opacity">7</span>
+                    <span data-overout="opacity">8</span>
+                    <span data-overout="opacity">9</span>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>third click</legend>
+                <div class="time-wrapper">
+                    <p>鼠标移入停止计时</p>
+                    <p>鼠标移出恢复计时</p>
+                    <span class="time" data-overout="time"></span>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>third click</legend>
+                <div class="img-wrapper">
+                    <p>查看高清图片(其实不是高清的)</p>
+                    <img src="lxc.png" alt="pic">
+                    <img src="lxc-large.png" alt="pic">
+                </div>
+            </fieldset>
+        </div>
+        <!--onmousemove-->
+        <div class="box" id="movebox">
+            <h3>onmousemove Event</h3>
+            <fieldset>
+                <legend>third click</legend>
+                <div>
+                    <p>鼠标移动在框内移动小红点跟着走</p>
+                    <p>绝对坐标</p>
+                    <p>相对坐标</p>
+                    <button>锁定水平方向</button>
+                    <button>锁定垂直方向</button>
+                    <span>小红点</span>
+                    <div>
+                        <p>进来出不去, 出去进不来</p>
+                        <button>我要进来</button>
+                        <button>放我出去</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <!--onmousedown/onmouseup-->
+        <div class="box" id="downupbox">
+            <h3>onmousedown/onmouseup Event</h3>
+        </div>
+    </div>
 
 
-	<script>
-		function $(id) {
-			return document.getElementById(id)
-		}
-		// 获取每个元素块
-		var changebox = $('changebox');
-		var clickbox = $('clickbox');
-		var overoutbox = $('overoutbox');
-		var movebox = $('movebox');
-		var downupbox = $('downupbox');
-		var cover = document.getElementsByClassName('cover')[0];
-		var time = overoutbox.getElementsByClassName('time')[0];
+    <script>
+        function $(id) {
+            return document.getElementById(id)
+        }
+        // 获取每个元素块
+        var changebox = $('changebox');
+        var clickbox = $('clickbox');
+        var overoutbox = $('overoutbox');
+        var movebox = $('movebox');
+        var downupbox = $('downupbox');
+        var cover = document.getElementsByClassName('cover')[0];
+        var time = overoutbox.getElementsByClassName('time')[0];
 
-		function nowTime() {
-			var date = new Date();
-			time.innerHTML = `现在是 ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`;
-		}
-		var timer = setInterval(nowTime, 1000);
+        function nowTime() {
+            var date = new Date();
+            time.innerHTML = `现在是 ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`;
+        }
+        var timer = setInterval(nowTime, 1000);
 
-		// change事件处理程序
-		function change() {
-			// 获取触发change事件的元素和事件处理程序要操作的元素
-			var changes = changebox.querySelectorAll('[data-change="change"]');
-			var contents = changebox.querySelectorAll('[data-change-content="content"]');
-			for (var i = 0; i < changes.length; i++) {
-				// 保存会触发事件的元素的索引
-				changes[i].index = i;
-			}
-			// 如果触发事件, 那么执行事件目标对应的处理程序(也就是改变对应的p元素的内容)
-			event.target && (contents[event.target.index].textContent = event.target.value);
-		}
+        // change事件处理程序
+        function change() {
+            // 获取触发change事件的元素和事件处理程序要操作的元素
+            var changes = changebox.querySelectorAll('[data-change="change"]');
+            var contents = changebox.querySelectorAll('[data-change-content="content"]');
+            for (var i = 0; i < changes.length; i++) {
+                // 保存会触发事件的元素的索引
+                changes[i].index = i;
+            }
+            // 如果触发事件, 那么执行事件目标对应的处理程序(也就是改变对应的p元素的内容)
+            event.target && (contents[event.target.index].textContent = event.target.value);
+        }
 
-		// click事件处理程序
-		function click() {
-			var clicks = clickbox.querySelectorAll('[data-click]');
-			var dataValue = event.target.dataset.click;
-			switch (dataValue) {
-				case 'alert':
-					alert('You click the first box');
-					break;
-				case 'bgc':
-					event.target.style.backgroundColor = '#546';
-					break;
-				case 'color':
-					event.target.style.color = '#fff';
-					break;
-				case 'cover':
-					cover.style.display = 'block';
-					break;
-				case 'close':
-					cover.style.display = 'none';
-					break;
-				default:
-					break;
-			}
-		}
+        // click事件处理程序
+        function click() {
+            var clicks = clickbox.querySelectorAll('[data-click]');
+            var dataValue = event.target.dataset.click;
+            switch (dataValue) {
+                case 'alert':
+                    alert('You click the first box');
+                    break;
+                case 'bgc':
+                    event.target.style.backgroundColor = '#546';
+                    break;
+                case 'color':
+                    event.target.style.color = '#fff';
+                    break;
+                case 'cover':
+                    cover.style.display = 'block';
+                    break;
+                case 'close':
+                    cover.style.display = 'none';
+                    break;
+                default:
+                    break;
+            }
+        }
 
-		//mouseover/mouseout事件
-		function over() {
-			var overouts = overoutbox.querySelectorAll('[data-overout]');
-			event.target.dataset.overout === 'time' && clearInterval(timer);
-			event.target.dataset.overout === 'opacity' && (event.target.style.opacity = 1);
-		}
-		function out() {
-			var overouts = overoutbox.querySelectorAll('[data-overout]');
-			event.target.dataset.overout === 'time' && (timer = setInterval(nowTime, 1000));
-			event.target.dataset.overout === 'opacity' && (event.target.style.opacity = .1);
-		}
-		overoutbox.addEventListener('mouseover', over, false);
-		overoutbox.addEventListener('mouseout', out, false);
-		clickbox.addEventListener("click", click, false);
-		changebox.addEventListener("change", change, false);
-	</script>
+        //mouseover/mouseout事件
+        function over() {
+            var overouts = overoutbox.querySelectorAll('[data-overout]');
+            event.target.dataset.overout === 'time' && clearInterval(timer);
+            event.target.dataset.overout === 'opacity' && (event.target.style.opacity = 1);
+        }
+        function out() {
+            var overouts = overoutbox.querySelectorAll('[data-overout]');
+            event.target.dataset.overout === 'time' && (timer = setInterval(nowTime, 1000));
+            event.target.dataset.overout === 'opacity' && (event.target.style.opacity = .1);
+        }
+        overoutbox.addEventListener('mouseover', over, false);
+        overoutbox.addEventListener('mouseout', out, false);
+        clickbox.addEventListener("click", click, false);
+        changebox.addEventListener("change", change, false);
+    </script>
 </body>
 
 </html>
