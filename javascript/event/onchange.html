@@ -1,43 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 
 <head>
     <meta charset="UTF-8">
     <title>OnChange</title>
     <style>
         /*基本样式*/
-
         body {
             font-family: Georgia, arial, sans-serif;
         }
-
         h1 {
             text-align: center;
         }
-
         #container {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
         }
-
         .box {
             border: 1px solid #000;
             padding: 15px;
             margin: 5px;
         }
-
         h3 {
             margin: 0;
             padding: 0;
             line-height: 24px;
         }
         /*内容样式*/
-
         #clickbox {
             position: relative;
         }
-
         .cover {
             width: 100%;
             height: 100%;
@@ -49,7 +42,6 @@
             opacity: .7;
             display: none;
         }
-
         .cover>span {
             position: absolute;
             right: 10px;
@@ -57,11 +49,9 @@
             color: #fff;
             cursor: pointer;
         }
-
         #overoutbox .time-wrapper {
             position: relative;
         }
-
         #overoutbox span {
             display: block;
             width: 30px;
@@ -75,7 +65,6 @@
             opacity: 0.1;
             cursor: pointer;
         }
-
         #overoutbox .time {
             width: 150px;
             height: 50px;
@@ -85,20 +74,18 @@
             right: 10px;
             top: 0;
         }
-
         #overoutbox img {
             display: block;
             float: right;
         }
-
         #overoutbox .img-wrapper {
             position: relative;
         }
-
         #overoutbox img+img {
             position: absolute;
-            top: -120px;
-            right: 99px;
+            top: -60px;
+            right: 120px;
+            display: none;
         }
     </style>
 </head>
@@ -178,8 +165,8 @@
                 <legend>third click</legend>
                 <div class="img-wrapper">
                     <p>查看高清图片(其实不是高清的)</p>
-                    <img src="lxc.png" alt="pic">
-                    <img src="lxc-large.png" alt="pic">
+                    <img src="lxc.png" alt="pic" data-overout="showhide">
+                    <img id="large_pic" src="lxc-large.png" alt="pic">
                 </div>
             </fieldset>
         </div>
@@ -221,14 +208,13 @@
         var movebox = $('movebox');
         var downupbox = $('downupbox');
         var cover = document.getElementsByClassName('cover')[0];
+        var largePic = document.getElementById('large_pic');
         var time = overoutbox.getElementsByClassName('time')[0];
-
         function nowTime() {
             var date = new Date();
             time.innerHTML = `现在是 ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`;
         }
         var timer = setInterval(nowTime, 1000);
-
         // change事件处理程序
         function change() {
             // 获取触发change事件的元素和事件处理程序要操作的元素
@@ -241,7 +227,6 @@
             // 如果触发事件, 那么执行事件目标对应的处理程序(也就是改变对应的p元素的内容)
             event.target && (contents[event.target.index].textContent = event.target.value);
         }
-
         // click事件处理程序
         function click() {
             var clicks = clickbox.querySelectorAll('[data-click]');
@@ -266,17 +251,18 @@
                     break;
             }
         }
-
         //mouseover/mouseout事件
         function over() {
             var overouts = overoutbox.querySelectorAll('[data-overout]');
             event.target.dataset.overout === 'time' && clearInterval(timer);
             event.target.dataset.overout === 'opacity' && (event.target.style.opacity = 1);
+            event.target.dataset.overout === 'showhide' && (largePic.style.display = 'block');
         }
         function out() {
             var overouts = overoutbox.querySelectorAll('[data-overout]');
             event.target.dataset.overout === 'time' && (timer = setInterval(nowTime, 1000));
             event.target.dataset.overout === 'opacity' && (event.target.style.opacity = .1);
+            event.target.dataset.overout === 'showhide' && (largePic.style.display = 'none');
         }
         overoutbox.addEventListener('mouseover', over, false);
         overoutbox.addEventListener('mouseout', out, false);
