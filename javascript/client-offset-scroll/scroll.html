@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang='zh-CN'>
+
+<head>
+    <meta charset='utf-8'>
+    <title>Scroll家族</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: Georgia, arial, sans-serif;
+    }
+    
+    ul,
+    ol {
+        list-style-type: none;
+    }
+    
+    h1 {
+        font-size: 30px;
+        width: max-content;
+        margin: 0 auto;
+    }
+    
+    .wrapper {
+        display: flex;
+        justify-content: space-around;
+    }
+    
+    .wrapper ol {
+        background-color: #ffe793;
+        border: 2px solid #ecc849;
+        margin: 20px;
+        padding: 15px;
+        width: 200px;
+    }
+    
+    .box {
+        width: 200px;
+        height: 200px;
+        margin: 20px;
+        padding: 20px;
+        background: #000;
+        border: 5px solid #e00;
+        color: #fff;
+        overflow: auto;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Scroll系列</h1>
+    <div class="wrapper">
+        <div>
+            <div class="box">
+                <h4>Scroll box拖动查看变化</h4>
+                <p>盒子属性同上</p>
+                <ul>
+                    <li>width: 200px</li>
+                    <li>height: 200px</li>
+                    <li>margin: 20px</li>
+                    <li>padding: 20px</li>
+                    <li>border: 5px</li>
+                    <li>overflow: auto</li>
+                </ul>
+                <div style="width:300px;height:10px;background-color: green;"></div>
+                <p>绿色水平条属性:</p>
+                <ul>
+                    <li>width: 300px</li>
+                    <li>height: 10px</li>
+                </ul>
+                <p>带有水平滚动条</p>
+                <p>Scroll test Scroll test Scroll test Scroll test Scroll test Scroll test Scroll test Scroll test</p>
+                <p>Scroll test Scroll test Scroll test Scroll test Scroll test Scroll test Scroll test Scroll test</p>
+            </div>
+            <ol>
+                <li>1、scrollWidth: 320</li>
+                <li>2、scrollHeight: 436</li>
+                <li>3、scrollLeft: 0</li>
+                <li>4、scrollTop: 0</li>
+            </ol>
+        </div>
+    </div>
+    <script>
+    var box = document.getElementsByClassName('box')[0];
+    var olis = box.nextElementSibling.getElementsByTagName('li');
+    var olistext = ['1、scrollWidth: ', '2、scrollHeight: ', '3、scrollLeft: ', '4、scrollTop: '];
+    box.addEventListener('scroll', function() {
+        var arr = [box.scrollWidth, box.scrollHeight, box.scrollLeft, box.scrollTop];
+        for (var i = 0; i < olis.length; i++) {
+            olis[i].textContent = olistext[i] + arr[i];
+        }
+    });
+    </script>
+</body>
+
+</html>
