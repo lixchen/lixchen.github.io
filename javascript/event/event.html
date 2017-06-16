@@ -3,12 +3,16 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>OnChange</title>
+    <title>Event</title>
     <style>
         /*基本样式*/
 
         body {
             font-family: Georgia, arial, sans-serif;
+        }
+
+        p {
+            width: max-content;
         }
 
         h1 {
@@ -108,9 +112,6 @@
             margin: 5px;
         }
 
-        #movebox fieldset {
-            position: relative;
-        }
 
         #redcircle {
             position: absolute;
@@ -206,18 +207,19 @@
         <!--onmousemove-->
         <div class="box" id="movebox">
             <h3>onmousemove Event</h3>
-            <fieldset data-move="move">
-                <legend>third click</legend>
-                <span id="redcircle"></span>
-                <p>鼠标在框内移动小红点跟着走</p>
-                <p>绝对坐标</p>
-                <p>相对坐标</p>
-                <button>锁定水平方向</button>
-                <button>锁定垂直方向</button>
-                <div id="wall">
-                    <p>进来出不去, 出去进不来</p>
+            <p>鼠标在框内移动小红点跟着走</p>
+            <p>绝对坐标: <span>5, 15</span></p>
+            <p>相对坐标: <span>5, 15</span></p>
+            <p>中间的框进来出不去, 出去进不来</p>
+            <button>锁定水平方向</button>
+            <button>锁定垂直方向</button>
+            <fieldset data-move="move" style="width:300px;height:300px">
+                <legend>move</legend>
+                <div id="redcircle"></div>
+                <div id="wall" style="width:100px;height:100px;margin:50px 50px;">
                     <button>我要进来</button>
                     <button>放我出去</button>
+                    <p>待完成</p>
                 </div>
             </fieldset>
         </div>
@@ -230,7 +232,7 @@
 
     <script>
         function $(id) {
-            return document.getElementById(id)
+            return document.getElementById(id);
         }
         // 获取每个元素块
         var changebox = $('changebox');
@@ -241,6 +243,7 @@
         var cover = document.getElementsByClassName('cover')[0];
         var largePic = document.getElementById('large_pic');
         var time = overoutbox.getElementsByClassName('time')[0];
+        var redcircle = document.getElementById('redcircle');
         function nowTime() {
             var date = new Date();
             time.innerHTML = `现在是 ${date.getHours()} : ${date.getMinutes()} : ${date.getSeconds()}`;
@@ -294,23 +297,28 @@
             event.target.dataset.overout === 'time' && (timer = setInterval(nowTime, 1000));
             event.target.dataset.overout === 'opacity' && (event.target.style.opacity = .1);
             event.target.dataset.overout === 'showhide' && (largePic.style.display = 'none');
+            redcircle.style.display = 'none';
         }
         //mousemove
         function move() {
-            var move = movebox.querySelectorAll('[data-move]');
-            var redcircle = document.getElementById('redcircle');
-            if(event.target.dataset.move === 'move') {
-                redcircle.style.display = 'block';
-                redcircle.style.left = event.
+            var move = movebox.querySelectorAll('[data-move]')[0];
+            redcircle.style.display = 'block';
+            if (move.offsetLeft < event.clientX && event.clientX < (move.offsetLeft + move.offsetWidth) && event.clientY + document.body.scrollTop > move.offsetTop && event.clientY + document.body.scrollTop < move.offsetTop + move.offsetHeight) {
+                redcircle.style.left = event.clientX - redcircle.offsetWidth / 2 + 'px';
+                redcircle.style.top = event.clientY + document.body.scrollTop - redcircle.offsetHeight / 2 + 'px';
             }
         }
-
+        function redhide() {
+            redcircle.style.display = 'none';
+            redcircle.style.cssText = '';
+        }
         // 监听事件
         changebox.addEventListener("change", change, false);
         clickbox.addEventListener("click", click, false);
         overoutbox.addEventListener('mouseover', over, false);
         overoutbox.addEventListener('mouseout', out, false);
         movebox.addEventListener("mousemove", move, false);
+        movebox.addEventListener("mouseout", redhide, false);
     </script>
 </body>
 
