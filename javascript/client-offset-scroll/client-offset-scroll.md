@@ -48,23 +48,25 @@
 #### 示例
 ![Alt client](imgs/offset.png)
 
-* 封装client函数
-function client() {
-        if(window.innerWidth != null)  // ie9 +  最新浏览器
-        {
+``` javascript
+// 封装client函数
+    function client() {
+        if(window.innerWidth != null) {
+            // ie9 +  最新浏览器
             return {
                 width: window.innerWidth,
                 height: window.innerHeight
             }
         }
-        else if(document.compatMode === "CSS1Compat")  // 标准浏览器
-        {
+        else if(document.compatMode === "CSS1Compat") {
+            // 标准浏览器
             return {
                 width: document.documentElement.clientWidth,
                 height: document.documentElement.clientHeight
             }
         }
-        return {   // 怪异浏览器
+        return {   
+            // 怪异浏览器
             width: document.body.clientWidth,
             height: document.body.clientHeight
 
@@ -72,40 +74,28 @@ function client() {
     }
     //用法
     document.write(client().width);
-
+```
     
-* 检查屏幕宽度
-* clientWidth 返回的是可视区域的大小 浏览器内部的大小
-* window.screen.width 返回的是电脑屏幕分辨率大小
 
-
-//页面滚动事件 onscroll
-window.onscroll = function() {
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop
-    || document.body.scrollTop || 0;
-        //兼容
-        document.title = scrollTop;
-        console.log(scrollTop);
-    }
-
-
+``` javascript
 // 封装自己的scroll函数
-function scroll() {
-    if(window.pageYOffset != null) { //  ie9+ 和其他浏览器
-        
-        return {
-            left: window.pageXOffset,
-            top: window.pageYOffset
+    function scroll() {
+        if(window.pageYOffset != null) { //  ie9+ 和其他浏览器
+            
+            return {
+                left: window.pageXOffset,
+                top: window.pageYOffset
+            }
+        }
+        else if(document.compatMode == "CSS1Compat") { // 声明的了 DTD 声明<!DOCTYPE html>
+            return {
+                left: document.documentElement.scrollLeft,
+                top: document.documentElement.scrollTop
+            }
+        }
+        return { //  剩下的肯定是怪异模式的
+            left: document.body.scrollLeft,
+            top: document.body.scrollTop
         }
     }
-    else if(document.compatMode == "CSS1Compat") { // 声明的了 DTD 声明<!DOCTYPE html>
-        return {
-            left: document.documentElement.scrollLeft,
-            top: document.documentElement.scrollTop
-        }
-    }
-    return { //  剩下的肯定是怪异模式的
-        left: document.body.scrollLeft,
-        top: document.body.scrollTop
-    }
-}
+```

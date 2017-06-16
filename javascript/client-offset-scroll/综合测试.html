@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>综合测试</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: Georgia, arial, sans-serif;
+    }
+
+    .wrapper {
+      position: relative;
+      width: max-content;
+      margin: 20px auto;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    ul,
+    ol {
+      list-style: none;
+    }
+
+    ul,
+    ol,
+    .change {
+      background-color: #f2d15e;
+      border: 2px solid #ecc849;
+      margin-top: 20px;
+      padding: 20px;
+      width: 200px;
+      margin: 10px;
+    }
+
+    .change label {
+      display: block;
+    }
+
+    .box {
+      margin: 15px;
+      padding: 15px;
+      width: 200px;
+      height: 200px;
+      background: #333;
+      border: 5px solid #e00;
+      color: #fff;
+      overflow: auto;
+    }
+
+    .separated {
+      width: 500px;
+      height: 10px;
+      background-color: #08d;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="box">
+      <h3>box</h3>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+      <div class="separated"></div>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+      <p>test test test test test test test test test test test test</p>
+    </div>
+    <div class="change">
+      <h3>改变box属性:</h3>
+      <label>1、width: <input type="text"></label>
+      <label>2、height: <input type="text"></label>
+      <label>3、margin: <input type="text"></label>
+      <label>4、padding: <input type="text"></label>
+      <label>5、border: <input type="text"></label>
+      <label>6、<input type="button" value="重置Box"></label>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="init-prop">
+      <h3>box初始属性:</h3>
+      <ul>
+        <li>1、width: 200px</li>
+        <li>2、height: 200px</li>
+        <li>3、margin: 15px</li>
+        <li>4、padding: 15px</li>
+        <li>5、border: 5px</li>
+        <li>6、overflow: auto</li>
+      </ul>
+    </div>
+    <div class="client-prop">
+      <h3>Client系列属性:</h3>
+      <ul>
+        <li>1、clientwidth: <span></span></li>
+        <li>2、clientheight: <span></span></li>
+        <li>3、clientLeft: <span></span></li>
+        <li>4、clientTop: <span></span></li>
+      </ul>
+    </div>
+    <div class="scroll-prop">
+      <h3>Scroll系列属性:</h3>
+      <ul>
+        <li>1、scrollwidth: <span></span></li>
+        <li>2、scrollheight: <span></span></li>
+        <li>3、scrollLeft: <span></span></li>
+        <li>4、scrollTop: <span></span></li>
+      </ul>
+    </div>
+    <div class="offset-prop">
+      <h3>Offset系列属性:</h3>
+      <ul>
+        <li>1、offsetwidth: <span></span></li>
+        <li>2、offsetheight: <span></span></li>
+        <li>3、offsetLeft: <span></span></li>
+        <li>4、offsetTop: <span></span></li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+    var box = document.getElementsByClassName('box')[0];
+    var inputs = document.getElementsByTagName('input');
+    var change = document.getElementsByClassName('change')[0];
+    var clientLis = document.getElementsByClassName('client-prop')[0].getElementsByTagName('span');;
+    var scrollLis = document.getElementsByClassName('scroll-prop')[0].getElementsByTagName('span');;
+    var offsetLis = document.getElementsByClassName('offset-prop')[0].getElementsByTagName('span');;
+
+    var clientArr = [box.clientWidth, box.clientHeight, box.clientLeft, box.clientTop];
+    var scrollArr = [box.scrollWidth, box.scrollHeight, box.scrollLeft, box.scrollTop];
+    var offsetArr = [box.offsetWidth, box.offsetHeight, box.offsetLeft, box.offsetTop];
+    for (var i = 0; i < clientLis.length; i++) {
+      clientLis[i].textContent = clientArr[i];
+      offsetLis[i].textContent = offsetArr[i];
+      scrollLis[i].textContent = scrollArr[i];
+    }
+    change.addEventListener('change', function () {
+      box.style.width = parseInt(inputs[0].value) + 'px';
+      box.style.height = parseInt(inputs[1].value) + 'px';
+      box.style.margin = parseInt(inputs[2].value) + 'px';
+      box.style.padding = parseInt(inputs[3].value) + 'px';
+      box.style.borderWidth = parseInt(inputs[4].value) + 'px';
+      var newClientArr = [box.clientWidth, box.clientHeight, box.clientLeft, box.clientTop];
+      var newScrollArr = [box.scrollWidth, box.scrollHeight, box.scrollLeft, box.scrollTop];
+      var newOffsetArr = [box.offsetWidth, box.offsetHeight, box.offsetLeft, box.offsetTop];
+      for (var i = 0; i < clientLis.length; i++) {
+        clientLis[i].textContent = newClientArr[i];
+        offsetLis[i].textContent = newOffsetArr[i];
+        scrollLis[i].textContent = newScrollArr[i];
+      }
+
+    }, false);
+
+    box.addEventListener('scroll', function() {
+        var arr = [box.scrollLeft, box.scrollTop];
+        scrollLis[2].textContent = arr[0];
+        scrollLis[3].textContent = arr[1];
+    });
+  </script>
+</body>
+
+</html>
