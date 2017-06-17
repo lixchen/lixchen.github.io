@@ -10,7 +10,7 @@
     height: 152px;
     margin: 50px auto;
     position: relative;
-    /*overflow: hidden;*/
+    overflow: hidden;
     border: 1px solid #333;
     position: relative;
 }

@@ -121,6 +121,14 @@
             background-color: red;
             border-radius: 50%;
         }
+        #dragdrop {
+            background-color: #ddd;
+            border: 1px solid #000;
+            width: 80px;
+            height: 80px;
+            position: relative;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -208,24 +216,19 @@
         <div class="box" id="movebox">
             <h3>onmousemove Event</h3>
             <p>鼠标在框内移动小红点跟着走</p>
-            <p>绝对坐标: <span>5, 15</span></p>
-            <p>相对坐标: <span>5, 15</span></p>
-            <p>中间的框进来出不去, 出去进不来</p>
-            <button>锁定水平方向</button>
-            <button>锁定垂直方向</button>
             <fieldset data-move="move" style="width:300px;height:300px">
                 <legend>move</legend>
                 <div id="redcircle"></div>
-                <div id="wall" style="width:100px;height:100px;margin:50px 50px;">
-                    <button>我要进来</button>
-                    <button>放我出去</button>
-                    <p>待完成</p>
-                </div>
             </fieldset>
         </div>
         <!--onmousedown/onmouseup-->
         <div class="box" id="downupbox">
             <h3>onmousedown/onmouseup Event</h3>
+                <p>盒子可拖动,并可改变大小</p>
+            <fieldset style="width:300px;height:300px">
+                <legend>Drag and drop</legend>
+                <div id="dragdrop">我可以拖动,也可以改变大小</div>
+            </fieldset>
         </div>
     </div>
 
