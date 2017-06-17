@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>商品放大镜</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style-type: none;
+        }
+
+        img {
+            vertical-align: middle;
+        }
+
+        #wrapper {
+            position: relative;
+            width: 350px;
+            margin: 50px;
+            border: 1px solid #333;
+        }
+
+        #small {
+            position: relative;
+        }
+
+
+        #mask {
+            background-color: rgba(255, 255, 0, .3);
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: none;
+        }
+
+        #large {
+            position: absolute;
+            top: 0;
+            left: 360px;
+            width: 450px;
+            height: 450px;
+            display: none;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+
+        #large img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    <script>
+        function $(selector) {
+            let selectorType = 'querySelectorAll';
+            if (selector.indexOf('#') === 0) {
+                selectorType = 'getElementById';
+                selector = selector.substr(1, selector.length);
+            } else if (selector.indexOf('.') === 0) {
+                selectorType = 'getElementsByClassName';
+                selector = selector.substr(1, selector.length);
+            }
+            return document[selectorType](selector);
+        }
+        function show(elem) {
+            elem.style.display = 'block';
+        }
+        function hide(elem) {
+            elem.style.display = 'none';
+        }
+
+        window.onload = function () {
+            const wrapper = $('#wrapper');
+            const small = $('#small');
+            const mask = $('#mask');
+            const large = $('#large');
+            const largeImg = large.children[0];
+            function move() {
+                // 计算mask应该移动的位置
+                let x = event.clientX - wrapper.offsetLeft - mask.offsetWidth / 2;
+                let y = event.clientY - wrapper.offsetTop - mask.offsetHeight / 2;
+                // 判断边界
+                if (x < 0) {
+                    x = 0;
+                } else if (x > wrapper.offsetWidth - mask.offsetWidth) {
+                    x = wrapper.offsetWidth - mask.offsetWidth;
+                }
+                if (y < 0) {
+                    y = 0;
+                } else if (y > wrapper.offsetHeight - mask.offsetHeight) {
+                    y = wrapper.offsetHeight - mask.offsetHeight;
+                }
+
+                mask.style.left = x + 'px';
+                mask.style.top = y + 'px';
+                largeImg.style.left = -large.offsetWidth / wrapper.offsetWidth * x + 'px';
+                largeImg.style.top = -large.offsetHeight / wrapper.offsetHeight * y + 'px';
+            }
+
+            small.addEventListener('mouseover', function () {
+                show(mask);
+                show(large);
+            }, false);
+            small.addEventListener('mouseout', function () {
+                hide(mask);
+                hide(large);
+            }, false);
+            small.addEventListener('mousemove', move, false);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="wrapper">
+        <div id="small">
+            <img src="images/mouse_small.jpg" alt="mousesmall">
+            <div id="mask"></div>
+        </div>
+        <div id="large">
+            <img src="images/mouse_large.jpg" alt="mouselarge">
+        </div>
+    </div>
+
+
+    <script>
+
+    </script>
+</body>
+
+</html>

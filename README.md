@@ -8,6 +8,8 @@
 
 2、 [大前端工具集](https://github.com/nieweidong/fetool)
 
+3、 [李云龙](https://github.com/fouber/blog)
+
 ## javascript资源
 
 1、 [Mozilla 开发者网络](https://developer.mozilla.org/zh-CN/)
