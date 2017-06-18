@@ -24,6 +24,7 @@
         #wrapper {
             position: relative;
             width: 350px;
+            height: 350px;
             margin: 50px;
             border: 1px solid #333;
         }
@@ -41,6 +42,7 @@
             left: 0;
             top: 0;
             display: none;
+            cursor: move;
         }
 
         #large {
@@ -85,7 +87,7 @@
             const mask = $('#mask');
             const large = $('#large');
             const largeImg = large.children[0];
-            function move() {
+            function move(event) {
                 // 计算mask应该移动的位置
                 let x = event.clientX - wrapper.offsetLeft - mask.offsetWidth / 2;
                 let y = event.clientY - wrapper.offsetTop - mask.offsetHeight / 2;
@@ -132,9 +134,8 @@
     </div>
 
 
-    <script>
 
-    </script>
+
 </body>
 
 </html>
