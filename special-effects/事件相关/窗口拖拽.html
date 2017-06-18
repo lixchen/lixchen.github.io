@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>窗口拖拽</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style-type: none;
+        }
+
+        #box {
+            width: 250px;
+            height: 200px;
+            background-color: #ddd;
+            border: 1px solid #333;
+            position: relative;
+            margin: 50px auto;
+            left: 0;
+            top: 0;
+        }
+
+        #box h3 {
+            width: 100%;
+            height: 30px;
+            line-height: 30px;
+            color: #fff;
+            background-color: #000;
+            font-weight: 400;
+            text-align: center;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        // 选择其器
+        function $(selector) {
+            let selectorType = 'querySelectorAll';
+            if (selector.indexOf('#') === 0) {
+                selectorType = 'getElementById';
+                selector = selector.substr(1, selector.length);
+            } else if (selector.indexOf('.') === 0) {
+                selectorType = 'getElementsByClassName';
+                selector = selector.substr(1, selector.length);
+            }
+            return document[selectorType](selector);
+        }
+        function drag(event,elem) {
+            const x = event.clientX;
+            const y = event.clientY;
+            function move(event) {
+                this.style.left = event.clientX - x + 'px';
+                this.style.top = event.clientY - y + 'px';
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+            }
+            function remove(event) {
+                this.removeEventListener('mousemove',move,false);
+            }
+            elem.addEventListener('mousemove', move, false);
+            elem.addEventListener('mouseup', remove, false);
+        }
+
+        window.onload = function () {
+            const box = $('#box');
+            const title = box.children[0];
+            title.addEventListener('mousedown', function (event) {
+                event.preventDefault();
+                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                drag(event,box);
+            }, false);
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <h3>按住标题可拖拽</h3>
+    </div>
+</body>
+
+</html>
