@@ -36,7 +36,7 @@
             background-color: #000;
             font-weight: 400;
             text-align: center;
-            cursor: pointer;
+            cursor: move;
         }
     </style>
     <script>
@@ -52,28 +52,25 @@
             }
             return document[selectorType](selector);
         }
-        function drag(event,elem) {
-            const x = event.clientX;
-            const y = event.clientY;
-            function move(event) {
-                this.style.left = event.clientX - x + 'px';
-                this.style.top = event.clientY - y + 'px';
-                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-            }
-            function remove(event) {
-                this.removeEventListener('mousemove',move,false);
-            }
-            elem.addEventListener('mousemove', move, false);
-            elem.addEventListener('mouseup', remove, false);
-        }
+
 
         window.onload = function () {
             const box = $('#box');
             const title = box.children[0];
             title.addEventListener('mousedown', function (event) {
-                event.preventDefault();
-                window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-                drag(event,box);
+                const x = event.clientX;
+                const y = event.clientY;
+                const xx = parseInt(getComputedStyle(box, null)['left']);
+                const yy = parseInt(getComputedStyle(box, null)['top']);
+                function move(event) {
+                    box.style.left = xx + event.clientX - x + 'px';
+                    box.style.top = yy + event.clientY - y + 'px';
+                    window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                }
+                document.addEventListener('mousemove', move, false);
+                document.addEventListener('mouseup', function () {
+                    document.removeEventListener('mousemove', move, false);
+                }, false);
             }, false);
         }
     </script>
