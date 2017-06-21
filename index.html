@@ -7,67 +7,68 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>lxc</title>
     <style>
-    body {
-        background: #666;
-    }
-    
-    .container {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
-        padding: 20px;
-        background: #fff;
-        border: 1px solid #ccc;
-        border-top: none;
-        border-bottom: none;
-        width: 1200px;
-        margin: 0 auto;
-        box-shadow: 0 0 3px;
-    }
-    
-    .box {
-        border: 3px dotted #333;
-        border-radius: 10px;
-        background: #42d5e3;
-        padding: 10px;
-        width: max-content;
-        height: max-content;
-        margin-bottom: 20px;
-    }
-    
-    h3,
-    h4 {
-        width: 100%;
-        margin: 0;
-        margin-bottom: 10px;
-        padding-bottom: 5px;
-        color: #eee;
-        border-bottom: 1px dotted #ddd;
-    }
-    
-    a {
-        text-decoration: none;
-        background-color: #e8e8e8;
-        display: inline-block;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 0 5px #333;
-        transition: all 0.5s;
-        margin: 5px;
-    }
-    
-    a:hover {
-        box-shadow: 0 0 8px #000;
-        color: #000;
-    }
-    
-    a:active {
-        box-shadow: 0 0 8px #000 inset;
-    }
+        body {
+            background: #666;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-top: none;
+            border-bottom: none;
+            width: 1200px;
+            margin: 0 auto;
+            box-shadow: 0 0 3px;
+        }
+
+        .box {
+            border: 3px dotted #333;
+            border-radius: 10px;
+            background: #42d5e3;
+            padding: 10px;
+            width: max-content;
+            height: max-content;
+            margin-bottom: 20px;
+        }
+
+        h3,
+        h4 {
+            width: 100%;
+            margin: 0;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            color: #eee;
+            border-bottom: 1px dotted #ddd;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #e8e8e8;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 5px #333;
+            transition: all 0.5s;
+            margin: 5px;
+        }
+
+        a:hover {
+            box-shadow: 0 0 8px #000;
+            color: #000;
+        }
+
+        a:active {
+            box-shadow: 0 0 8px #000 inset;
+        }
     </style>
 </head>
 
 <body>
+    <p id="p"></p>
     <!-- <a href="" target="blank"></a> -->
     <div class="container">
         <!-- 文档参考 -->
@@ -97,13 +98,16 @@
         </div>
         <!-- github资源 -->
         <div class="box">
-        	<h3>GitHub资源</h3>
-        	<div>
+            <h3>GitHub资源</h3>
+            <div>
                 <a href="https://github.com/lixchen" target="blank">我的 Github 主页</a>
-        		<a target="blank"  href="https://github.com/xitu/front-end-handbook-2017/blob/zh-Hans/README.md">前端开发者指南（2017）</a>
-        	</div>
+                <a target="blank" href="https://github.com/xitu/front-end-handbook-2017/blob/zh-Hans/README.md">前端开发者指南（2017）</a>
+            </div>
         </div>
         <script src="../../dist/js/main.js"></script>
+        <script>
+            p.innerHTML = document.lastModified;
+        </script>
 </body>
 
 </html>
