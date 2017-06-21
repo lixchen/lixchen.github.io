@@ -39,47 +39,56 @@
             cursor: move;
         }
     </style>
-    <script>
-        // 选择其器
-        function $(selector) {
-            let selectorType = 'querySelectorAll';
-            if (selector.indexOf('#') === 0) {
-                selectorType = 'getElementById';
-                selector = selector.substr(1, selector.length);
-            } else if (selector.indexOf('.') === 0) {
-                selectorType = 'getElementsByClassName';
-                selector = selector.substr(1, selector.length);
-            }
-            return document[selectorType](selector);
-        }
-
-
-        window.onload = function () {
-            const box = $('#box');
-            const title = box.children[0];
-            title.addEventListener('mousedown', function (event) {
-                const x = event.clientX;
-                const y = event.clientY;
-                const xx = parseInt(getComputedStyle(box, null)['left']);
-                const yy = parseInt(getComputedStyle(box, null)['top']);
-                function move(event) {
-                    box.style.left = xx + event.clientX - x + 'px';
-                    box.style.top = yy + event.clientY - y + 'px';
-                    window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
-                }
-                document.addEventListener('mousemove', move, false);
-                document.addEventListener('mouseup', function () {
-                    document.removeEventListener('mousemove', move, false);
-                }, false);
-            }, false);
-        }
-    </script>
+    <script type="text/javascript" src="../../lib/lxc.js"></script>
 </head>
 
 <body>
     <div id="box">
         <h3>按住标题可拖拽</h3>
     </div>
+    <script>
+        const box = $('#box');
+        const title = box.children[0];
+
+        function drag(elem, target) {
+            elem.addEventListener('mousedown', function (event) {
+                const x = event.clientX;
+                const y = event.clientY;
+                const elemX = parseFloat(css(elem, 'left'));
+                const elemY = parseFloat(css(elem, 'top'));
+                function move(event) {
+                    css(elem, { left: elemX + event.clientX - x + 'px', top: elemY + event.clientY - y + 'px' });
+                    window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+                }
+                if (event.target === target) {
+                    document.addEventListener('mousemove', move, false);
+                    document.addEventListener('mouseup', function () {
+                        document.removeEventListener('mousemove', move, false);
+                    }, false);
+                }
+            }, false);
+        }
+        drag(box, title)
+        // window.onload = function () {
+        //     const box = $('#box');
+        //     const title = box.children[0];
+        //     title.addEventListener('mousedown', function (event) {
+        //         const x = event.clientX;
+        //         const y = event.clientY;
+        //         const xx = parseInt(getComputedStyle(box, null)['left']);
+        //         const yy = parseInt(getComputedStyle(box, null)['top']);
+        //         function move(event) {
+        //             box.style.left = xx + event.clientX - x + 'px';
+        //             box.style.top = yy + event.clientY - y + 'px';
+        //             window.getSelection ? window.getSelection().removeAllRanges() : document.selection.empty();
+        //         }
+        //         document.addEventListener('mousemove', move, false);
+        //         document.addEventListener('mouseup', function () {
+        //             document.removeEventListener('mousemove', move, false);
+        //         }, false);
+        //     }, false);
+        // }
+    </script>
 </body>
 
 </html>
