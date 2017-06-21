@@ -69,6 +69,7 @@
 
 <body>
     <p id="p"></p>
+    <p id="p1"></p>
     <!-- <a href="" target="blank"></a> -->
     <div class="container">
         <!-- 文档参考 -->
@@ -106,7 +107,8 @@
         </div>
         <script src="../../dist/js/main.js"></script>
         <script>
-            p.innerHTML = document.lastModified;
+            p.innerHTML = `本文发布时间${new Data()}`;
+            p1.innerHTML = `本文更新时间${document.lastModified}`;
         </script>
 </body>
 
