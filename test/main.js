@@ -34,5 +34,3 @@ next.onclick = function () {
         }
     });
 }
-    // 待解决问题  removeChild 一组
-    //
