@@ -4,18 +4,18 @@
 
 ## github资源
 
-1、 [前端开发者指南](https://github.com/xitu/front-end-handbook-2017)
+1、[前端开发者指南](https://github.com/xitu/front-end-handbook-2017)
 
-2、 [大前端工具集](https://github.com/nieweidong/fetool)
+2、[大前端工具集](https://github.com/nieweidong/fetool)
 
-3、 [李云龙](https://github.com/fouber/blog)
+3、[李云龙](https://github.com/fouber/blog)
 
-4、 [如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
+4、[如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
 
-5、 [github上最全的资源教程-前端涉及的所有知识体系](http://www.cnblogs.com/HanBlogs/p/5931814.html)
-6、 [You Don't Need jQuery!](https://blog.garstasio.com/you-dont-need-jquery/)
+5、[github上最全的资源教程-前端涉及的所有知识体系](http://www.cnblogs.com/HanBlogs/p/5931814.html)
+6、[You Don't Need jQuery!](https://blog.garstasio.com/you-dont-need-jquery/)
 
-7、 [You-Dont-Need-JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
+7、[You-Dont-Need-JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
 
 8、[You-Dont-Need-jQuery](https://github.com/oneuijs/You-Dont-Need-jQuery/blob/master/README.zh-CN.md)
 
@@ -31,23 +31,6 @@
 
 14、[微信](https://github.com/weixin)
 
-15、
-
-16、
-
-17、
-
-18、
-
-19、
-
-20、
-
-21、
-
-22、
-
-23、
 
 
 ## 网址
