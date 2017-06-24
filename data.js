@@ -3,7 +3,7 @@ var data = [{
     "time": "first article's timer",
     "type": "html",
     "description": "this is article27",
-    "link": "http://article27.link"
+    "link": "pages.html#article27"
 }, {
     "title": "article26",
     "time": "second article's timer",

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="lib/marked.js"></script>
+    <link rel="stylesheet" href="lib/prism.css">
+    <script src="lib/prism.js"></script>
+    <style>Vv
+
+    </style>
+</head>
+
+<body>
+    <div id="content"></div>
+    <script>
+    function get(fileName) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', fileName);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                lxc1 = xhr.responseText;
+                document.getElementById('content').innerHTML = marked(lxc1);
+            } else {
+                alert('Request failed.  Returned status of ' + xhr.status);
+            }
+        };
+        xhr.send();
+    }
+    var hash = location.hash.substr(1);
+    get('./doc/'+hash+'.md');
+    </script>
+</body>
+
+</html>
