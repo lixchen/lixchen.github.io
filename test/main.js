@@ -33,4 +33,5 @@ next.onclick = function () {
             article.render();
         }
     });
+    return false;
 }

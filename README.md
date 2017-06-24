@@ -13,6 +13,7 @@
 4、[如何实现一个 Virtual DOM 算法](https://github.com/livoras/blog/issues/13)
 
 5、[github上最全的资源教程-前端涉及的所有知识体系](http://www.cnblogs.com/HanBlogs/p/5931814.html)
+
 6、[You Don't Need jQuery!](https://blog.garstasio.com/you-dont-need-jquery/)
 
 7、[You-Dont-Need-JavaScript](https://github.com/you-dont-need/You-Dont-Need-JavaScript)
