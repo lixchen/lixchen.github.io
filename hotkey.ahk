@@ -37,7 +37,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;normal
 	::jav::JavaScript
 	::nodejs::Node.js
-	::js::javascript
+	::jsc::javascript
 ;css
 	::bgc::backgroundColor
 

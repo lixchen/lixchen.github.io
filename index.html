@@ -1,116 +1,59 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-cmn-Hans">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>lxc</title>
+    <title>Document</title>
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
     <style>
-        body {
-            background: #666;
-        }
-
-        .container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            padding: 20px;
-            background: #fff;
-            border: 1px solid #ccc;
-            border-top: none;
-            border-bottom: none;
-            width: 1200px;
-            margin: 0 auto;
-            box-shadow: 0 0 3px;
-        }
-
-        .box {
-            border: 3px dotted #333;
-            border-radius: 10px;
-            background: #42d5e3;
-            padding: 10px;
-            width: max-content;
-            height: max-content;
-            margin-bottom: 20px;
-        }
-
-        h3,
-        h4 {
-            width: 100%;
+        * {
             margin: 0;
+            padding: 0;
+        }
+
+        ul,
+        ol {
+            list-style-type: none;
+        }
+
+        body {
+            width: 80%;
+            height: 100px;
+            margin: 0 auto;
+        }
+
+        header,
+        footer {
+            width: 100%;
+            height: 80px;
+            border: 1px solid #ddd;
+        }
+
+        section {
             margin-bottom: 10px;
-            padding-bottom: 5px;
-            color: #eee;
-            border-bottom: 1px dotted #ddd;
-        }
-
-        a {
-            text-decoration: none;
-            background-color: #e8e8e8;
-            display: inline-block;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 0 5px #333;
-            transition: all 0.5s;
-            margin: 5px;
-        }
-
-        a:hover {
-            box-shadow: 0 0 8px #000;
-            color: #000;
-        }
-
-        a:active {
-            box-shadow: 0 0 8px #000 inset;
         }
     </style>
 </head>
 
 <body>
-    <p id="p"></p>
-    <p id="p1"></p>
-    <!-- <a href="" target="blank"></a> -->
-    <div class="container">
-        <!-- 文档参考 -->
-        <div class="box">
-            <h3 title="Mozilla Developer Network">MDN 参考</h3>
-            <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript" target="blank">Javascript</a>
-            <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML" target="blank">HTML</a>
-            <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS" target="blank">CSS</a>
-            <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP" target="blank">HTTP</a>
-            <a href="https://developer.mozilla.org/zh-CN/docs/Web/Reference/API" target="blank">Web API</a>
+    <header>header</header>
+    <main>
+        <div id="main">
+
         </div>
-        <!-- 常用网址 -->
-        <div class="box">
-            <h3 title="Mozilla Developer Network">常用网址</h3>
-            <div>
-                <h4>搜索</h4>
-                <a href="https://www.baidu.com" target="blank">百度</a>
-                <a href="https://www.google.com" target="blank">谷歌</a>
-                <a href="https://cn.bing.com/" target="blank">必应</a>
-            </div>
-            <div>
-                <h4>ECMAScript6</h4>
-                <a href="http://es6.ruanyifeng.com/" target="blank" title="阮一峰">ECMAScript6 入门</a>
-                <a href="http://www.infoq.com/cn/ES6-In-Depth/articles/" target="blank" title="infoq">深入浅出ES6</a>
-                <a href="http://javascript.ruanyifeng.com/" target="blank" title="infoq">JavaScript 标准参考教程</a>
-            </div>
+        <div id="page">
+            <a href="#" id="last">last</a>
+            <a href="#" id="next">next</a>
         </div>
-        <!-- github资源 -->
-        <div class="box">
-            <h3>GitHub资源</h3>
-            <div>
-                <a href="https://github.com/lixchen" target="blank">我的 Github 主页</a>
-                <a target="blank" href="https://github.com/xitu/front-end-handbook-2017/blob/zh-Hans/README.md">前端开发者指南（2017）</a>
-            </div>
-        </div>
-        <script src="../../dist/js/main.js"></script>
-        <script>
-            var lxc = new Date();
-            p.innerHTML = `本文发布时间${new Date()}`;
-            p1.innerHTML = `本文更新时间${document.lastModified}`;
-        </script>
+    </main>
+    <footer>footer</footer>
+    <script src="data.js"></script>
+    <script src="./js/main.js"></script>
+    <script>
+        lxc("javascript");
+    </script>
 </body>
 
 </html>
