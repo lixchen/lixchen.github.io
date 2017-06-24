@@ -10,23 +10,25 @@
 
 <body>
     <div id="content"></div>
-    <script src="lib/prism.js"></script>
     <script>
         var scri = document.createElement('script');
         scri.src = "lib/prism.js";
-        var xhr = new XMLHttpRequest();
-
-        xhr.open('GET', "./doc/article27.md");
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                document.getElementById('content').innerHTML = marked(xhr.responseText);
-                // 这个库必须最后添加
-                document.head.appendChild(scri);
-            } else {
-                alert('Request failed.  Returned status of ' + xhr.status);
-            }
-        };
-        xhr.send();
+        function get(fileName) {
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', fileName);
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    document.getElementById('content').innerHTML = marked(xhr.responseText);
+                    // 这个库必须最后添加
+                    document.head.appendChild(scri);
+                } else {
+                    alert('Request failed.  Returned status of ' + xhr.status);
+                }
+            };
+            xhr.send();
+        }
+        var hash = location.hash.substr(1);
+        get('./doc/' + hash + '.md');
     </script>
 </body>
 
