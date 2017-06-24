@@ -6,30 +6,27 @@
     <title>Document</title>
     <script src="lib/marked.js"></script>
     <link rel="stylesheet" href="lib/prism.css">
-    <script src="lib/prism.js"></script>
-    <style>Vv
-
-    </style>
 </head>
 
 <body>
     <div id="content"></div>
+    <script src="lib/prism.js"></script>
     <script>
-    function get(fileName) {
+        var scri = document.createElement('script');
+        scri.src = "lib/prism.js";
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', fileName);
-        xhr.onload = function() {
+
+        xhr.open('GET', "./doc/article27.md");
+        xhr.onload = function () {
             if (xhr.status === 200) {
-                lxc1 = xhr.responseText;
-                document.getElementById('content').innerHTML = marked(lxc1);
+                document.getElementById('content').innerHTML = marked(xhr.responseText);
+                // 这个库必须最后添加
+                document.head.appendChild(scri);
             } else {
                 alert('Request failed.  Returned status of ' + xhr.status);
             }
         };
         xhr.send();
-    }
-    var hash = location.hash.substr(1);
-    get('./doc/'+hash+'.md');
     </script>
 </body>
 

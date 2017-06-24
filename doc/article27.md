@@ -2,6 +2,11 @@
 
 JavaScript 有 *"一切皆为对象"* 的说法。
 
+```js
+var lxc = 1;
+console.log(lxc);
+```
+
 想要缕清 JavaScript 中对象之间的关系，我们先从数据类型说起。
 
 ## JavaScript中的数据类型
@@ -57,11 +62,7 @@ JavaScript 数据类型一共有7种( 6 种基本数据类型和 Object 对象):
 
 JavaScript 中的对象可以使用 `new` + `构造函数`创建。而函数又是对象。所以需要先弄清函数与对象之间的关系。
 
-```js
-var lxc = 1;
-console.log(lxc);
 
-```
 
 所有的对象都通过__proto__属性链接到它的构造器的prototype上一直链接到Object.prototype
 所有的构造器都通过__proto__属性链接到f(), 然后f()再通过__proto__属性链接到Object.prototype, 并且f()的构造器是Function()
