@@ -35,6 +35,19 @@ function lxc(type) {
         }
     });
     window.scrollTo(0, 0);
+    // 动态添加 分页标签
+    var len = data.length;
+    for (var i = 0; i < Math.ceil(len / 10); i++) {
+        var a = document.createElement('a');
+        a.innerHTML = i + 1;
+        page.insertBefore(a, page.lastElementChild);
+        a.onclick = function () {
+            main.innerHTML = '';
+            count = (parseInt(this.textContent) - 1) < 1 ? 0 : (parseInt(this.textContent) - 1);
+            lxc();
+            return false;
+        }
+    }
 }
 next.onclick = function () {
     count++;
@@ -58,7 +71,7 @@ last.onclick = function () {
     return false;
 }
 
-// 动态添加 分页标签
+// // 动态添加 分页标签
 // var len = data.length;
 // for (var i = 0; i < Math.ceil(len / 10); i++) {
 //     var a = document.createElement('a');
