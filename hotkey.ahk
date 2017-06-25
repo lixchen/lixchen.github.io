@@ -45,6 +45,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 ;sublime
 CapsLock & s:: Run "D:\编辑器IDE\Sublime Text 3\sublime_text.exe"
+;vscode
+CapsLock & v:: Run "D:\编辑器IDE\Microsoft VS Code\Code.exe"
 ;chrome
 CapsLock & g::
 IfWinExist ahk_exe chrome.exe
