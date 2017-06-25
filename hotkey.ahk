@@ -84,6 +84,7 @@ ifWinExist ahk_class CabinetWClass
 else
 {
    Send #e 
+   return
 }
 
 
@@ -104,7 +105,20 @@ SendInput run.bat{enter}
 
 
 
-;代码片段
+;创建文件
+CreateFile(lxc) 
+{
+Send !r
+Sleep 400
+Send type nul>zzz.%lxc%{enter}
+Send !{F4}
+Sleep 1100
+Send {end}{F2}
+return
+}
+CapsLock & 1:: CreateFile("html")
+CapsLock & 2:: CreateFile("css")
+CapsLock & 3:: CreateFile("js")
 
 
 

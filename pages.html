@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <script src="lib/marked.js"></script>
-    <link rel="stylesheet" href="lib/prism.css">
+    <link rel="stylesheet" href="lib/css/prism.css">
+    <script src="lib/js/marked.js"></script>
 </head>
 
 <body>
     <div id="content"></div>
     <script>
         var scri = document.createElement('script');
-        scri.src = "lib/prism.js";
+        scri.src = "lib/js/prism.js";
         function get(fileName) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', fileName);
