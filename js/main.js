@@ -1,86 +1,111 @@
-function Article(obj) {
-    this.title = obj.title;
-    this.time = obj.time;
-    this.type = obj.type;
-    this.description = obj.description;
-    this.link = obj.link;
-    this.content = `
-        <h3>${this.title}</h3>
-        <time>${this.time}</time>
-        <span>${this.type}</span>
-        <p>${this.description}</p>
-        <a href="${this.link}">read me</a>
-    `
+function MyArticle(elemId, data) {
+    this.elem = document.getElementById(elemId);
+    this.data = data;
+    this.category = location.hash.substr(1);
+    this.fragment = document.createDocumentFragment();
+    this.count = 0;
+    this.topTenData; // 保存前十项数据
+    this.page;
 }
-Article.prototype.render = function () {
-    var section = document.createElement('section');
-    section.innerHTML = this.content;
-    main.appendChild(section);
+
+// 将数据分类 并且限制最多渲染10项
+MyArticle.prototype.classify = function() {
+    if (this.category) {
+        this.data = this.data.filter(item => (item.type === this.category));
+        this.topTenData = this.data.filter((item, index) => (index >= 10 * this.count && index < 10 * (this.count + 1)));
+    } else {
+        this.topTenData = this.data.filter((item, index) => (index >= 10 * this.count && index < 10 * (this.count + 1)));
+    }
 };
-var count = 0;
-
-var arrLike = main.children;
-
-
-function lxc(type) {
-    if (type) {
-        data = data.filter(function (item) {
-            return item.type === type;
-        });
+// 渲染数据到页面 最多10项
+MyArticle.prototype.render = function(obj) {
+    for (let value of obj) {
+        const article = document.createElement('article');
+        article.className = 'article';
+        article.innerHTML = `
+        <h3>${value.title}</h3>
+        <time>${value.time}</time>
+        <span>${value.type}</span>
+        <p>${value.description}</p>
+        <a href="${value.link}">read me</a>
+        `;
+        this.fragment.appendChild(article);
     }
-    data.forEach(function (item, index, arr) {
-        if (index >= 10 * count && index < 10 * (count + 1)) {
-            var article = new Article(item);
-            article.render();
+};
+// 分页功能
+MyArticle.prototype.paging = function() {
+    const len = this.data.length;
+    const pageNum = Math.ceil(len / 10);
+    if (len > 10) {
+        this.page = document.createElement("div");
+        this.page.className = 'page';
+        if (pageNum > 1) {
+            this.page.innerHTML = `
+            <span class="last-page">last</span>
+            <span class="next-page">next</span>
+            `;
         }
-    });
-    window.scrollTo(0, 0);
-    // 动态添加 分页标签
-    var len = data.length;
-    for (var i = 0; i < Math.ceil(len / 10); i++) {
-        var a = document.createElement('a');
-        a.innerHTML = i + 1;
-        page.insertBefore(a, page.lastElementChild);
-        a.onclick = function () {
-            main.innerHTML = '';
-            count = (parseInt(this.textContent) - 1) < 1 ? 0 : (parseInt(this.textContent) - 1);
-            lxc();
-            return false;
+        for (let i = 0; i < pageNum; i++) {
+            const span = document.createElement('span');
+            span.className = 'page-num'
+            span.textContent = i + 1;
+            this.page.insertBefore(span, this.page.lastElementChild);
+        }
+        this.fragment.appendChild(this.page);
+    }
+
+};
+// 页面模拟跳转功能
+MyArticle.prototype.jump = function() {
+    window.addEventListener('hashchange', () => location.reload());
+};
+
+
+// 运行实例
+MyArticle.prototype.run = function() {
+    this.classify();
+    this.render(this.topTenData);
+    this.paging();
+    this.elem.innerHTML = '';
+    this.elem.appendChild(this.fragment);
+    this.jump();
+    this.listener();
+};
+MyArticle.prototype.handler = function(event) {
+    const that = this;
+    const next = this.page.getElementsByClassName('next-page')[0];
+    const last = this.page.getElementsByClassName('last-page')[0];
+    const pageNum = this.page.getElementsByClassName('page-num');
+    const len = this.data.length;
+    return function(event) {
+        for (let value of pageNum) {
+            if (event.target === value) {
+                that.count = (parseInt(value.textContent) - 1) < 1 ? 0 : (parseInt(value.textContent) - 1);
+                that.run();
+            }
+        }
+        if (event.target === next) {
+            that.count++;
+            if (that.count > len / 10) {
+                that.count = parseInt(len / 10);
+                return false;
+            }
+            that.run();
+        } else if (event.target === last) {
+            that.count--;
+            if (that.count < 0) {
+                that.count = 0;
+                return false;
+            }
+            that.run();
         }
     }
-}
-next.onclick = function () {
-    count++;
-    if (count > len / 10) {
-        count = parseInt(len / 10);
-        return false;
+};
+// 事件处理程序
+MyArticle.prototype.listener = function() {
+    if (this.page) {
+        this.elem.addEventListener('click', this.handler());
+    } else {
+        this.elem.removeEventListener('click', this.handler());
     }
-    main.innerHTML = '';
-    lxc();
-    return false;
-}
-
-last.onclick = function () {
-    count--;
-    if (count < 0) {
-        count = 0;
-        return false;
-    }
-    main.innerHTML = '';
-    lxc();
-    return false;
-}
-
-// // 动态添加 分页标签
-// var len = data.length;
-// for (var i = 0; i < Math.ceil(len / 10); i++) {
-//     var a = document.createElement('a');
-//     a.innerHTML = i + 1;
-//     page.insertBefore(a, page.lastElementChild);
-//     a.onclick = function () {
-//         main.innerHTML = '';
-//         count = (parseInt(this.textContent) - 1) < 1 ? 0 : (parseInt(this.textContent) - 1);
-//         lxc();
-//         return false;
-//     }
-// }
+};
