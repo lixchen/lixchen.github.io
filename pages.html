@@ -34,7 +34,7 @@
                     // 这个库必须最后添加
                     document.head.appendChild(scri);
                 } else {
-                    alert('Request failed.  Returned status of ' + xhr.status);
+                    document.getElementById('main').innerHTML = '这篇文章已经被删除。';
                 }
             };
             xhr.send();

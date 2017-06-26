@@ -9,7 +9,7 @@ function MyArticle(elemId, data) {
 }
 
 // 将数据分类 并且限制最多渲染10项
-MyArticle.prototype.classify = function() {
+MyArticle.prototype.classify = function () {
     if (this.category) {
         this.data = this.data.filter(item => (item.type === this.category));
         this.topTenData = this.data.filter((item, index) => (index >= 10 * this.count && index < 10 * (this.count + 1)));
@@ -18,7 +18,7 @@ MyArticle.prototype.classify = function() {
     }
 };
 // 渲染数据到页面 最多10项
-MyArticle.prototype.render = function(obj) {
+MyArticle.prototype.render = function (obj) {
     for (let value of obj) {
         const article = document.createElement('article');
         article.className = 'article';
@@ -27,13 +27,13 @@ MyArticle.prototype.render = function(obj) {
         <time>${value.time}</time>
         <span>${value.type}</span>
         <p>${value.description}</p>
-        <a href="${value.link}">read me</a>
+        <a class="read" href="pages.html">阅读全文</a>
         `;
         this.fragment.appendChild(article);
     }
 };
 // 分页功能
-MyArticle.prototype.paging = function() {
+MyArticle.prototype.paging = function () {
     const len = this.data.length;
     const pageNum = Math.ceil(len / 10);
     if (len > 10) {
@@ -56,13 +56,13 @@ MyArticle.prototype.paging = function() {
 
 };
 // 页面模拟跳转功能
-MyArticle.prototype.jump = function() {
+MyArticle.prototype.jump = function () {
     window.addEventListener('hashchange', () => location.reload());
 };
 
 
 // 运行实例
-MyArticle.prototype.run = function() {
+MyArticle.prototype.run = function () {
     this.classify();
     this.render(this.topTenData);
     this.paging();
@@ -71,17 +71,24 @@ MyArticle.prototype.run = function() {
     this.jump();
     this.listener();
 };
-MyArticle.prototype.handler = function(event) {
+MyArticle.prototype.handler = function (event) {
     const that = this;
     const next = this.page.getElementsByClassName('next-page')[0];
     const last = this.page.getElementsByClassName('last-page')[0];
     const pageNum = this.page.getElementsByClassName('page-num');
+    const readBtns = lxc.elem.getElementsByClassName("read");
     const len = this.data.length;
-    return function(event) {
+    return function (event) {
         for (let value of pageNum) {
             if (event.target === value) {
                 that.count = (parseInt(value.textContent) - 1) < 1 ? 0 : (parseInt(value.textContent) - 1);
                 that.run();
+            }
+        }
+        
+        for (let i in readBtns) {
+            if (event.target === readBtns[i]&&readBtns.hasOwnProperty(i)) {
+                event.target.href += `#${that.data[i].title}`;
             }
         }
         if (event.target === next) {
@@ -102,7 +109,7 @@ MyArticle.prototype.handler = function(event) {
     }
 };
 // 事件处理程序
-MyArticle.prototype.listener = function() {
+MyArticle.prototype.listener = function () {
     if (this.page) {
         this.elem.addEventListener('click', this.handler());
     }
