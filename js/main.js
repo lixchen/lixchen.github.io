@@ -105,7 +105,5 @@ MyArticle.prototype.handler = function(event) {
 MyArticle.prototype.listener = function() {
     if (this.page) {
         this.elem.addEventListener('click', this.handler());
-    } else {
-        this.elem.removeEventListener('click', this.handler());
     }
 };

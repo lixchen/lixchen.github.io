@@ -5,11 +5,23 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="lib/css/prism.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="lib/js/marked.js"></script>
 </head>
 
 <body>
-    <div id="content"></div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">index</a></li>
+                <li><a href="index.html#javascript">javascript</a></li>
+                <li><a href="index.html#html">html</a></li>
+                <li><a href="index.html#css">css</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div id="main" class="main"></div>
+    <footer>footer</footer>
     <script>
         var scri = document.createElement('script');
         scri.src = "lib/js/prism.js";
@@ -18,7 +30,7 @@
             xhr.open('GET', fileName);
             xhr.onload = function () {
                 if (xhr.status === 200) {
-                    document.getElementById('content').innerHTML = marked(xhr.responseText);
+                    document.getElementById('main').innerHTML = marked(xhr.responseText);
                     // 这个库必须最后添加
                     document.head.appendChild(scri);
                 } else {
