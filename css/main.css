@@ -1,0 +1,89 @@
+/* reset */
+
+
+/* 设置62.5%，是因为有些设备的1px并不是1px(参考图解css3)，这样可以在任何设备上都保持字体尺寸合适 */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    /* 10px(多数情况下) */
+    font-size: 62.5%;
+    font-weight: normal;
+    width: 100%;
+    height: 100%;
+    font-family: georgia, arial, sans-serif;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    font-size: 1.6em;
+    background-color: #f9f6dd;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+
+/* 内容 */
+
+header {
+    width: 100%;
+    background: #fab000;
+    border-bottom: 3px solid #fff;
+    box-shadow: 0 0 6px #000;
+}
+
+header nav {
+    width: 80%;
+    background-color: #52ba93;
+    margin: 0 auto;
+    display: table;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+
+header nav ul {
+    display: table-row;
+}
+
+header nav ul li {
+    display: table-cell;
+    width: 20%;
+    line-height: 2;
+    text-align: center;
+}
+
+.main {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 1em;
+    padding: 2em;
+    background: #276;
+}
+
+.main .article {
+    border: 1px solid #fff;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
+.main .page {
+	border: 1px solid #fff;
+	padding: .3em;
+	text-align: center;
+} 
+footer {
+	width: 100%;
+	margin-top: 1em;
+	padding: 1em;
+	background: #000;
+	color: #fff;
+	text-align: center;
+}

@@ -7,32 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="lib/css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
     <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
-    <style>
-    * {
-        margin: 0;
-        padding: 0;
-    }
-    
-    ul,
-    ol {
-        list-style-type: none;
-    }
-    
-    body {
-        width: 80%;
-        height: 100px;
-        margin: 0 auto;
-    }
-    
-    header,
-    footer {
-        width: 100%;
-        height: 80px;
-        border: 1px solid #ddd;
-    }
-    
-    </style>
 </head>
 
 <body>
@@ -47,15 +23,15 @@
         </nav>
     </header>
     <div>
-        <div id="main">
+        <div id="main" class="main">
         </div>
     </div>
     <footer>footer</footer>
     <script src="js/data.js"></script>
     <script src="js/main.js"></script>
     <script>
-    const lxc = new MyArticle("main", data);
-    lxc.run();
+        const lxc = new MyArticle("main", data);
+        lxc.run();
     </script>
 </body>
 
