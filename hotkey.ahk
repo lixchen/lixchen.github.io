@@ -100,8 +100,14 @@ SendInput d:{enter}
 Sleep 300
 SendInput run.bat{enter}
 }
-
-
+;brower-sync 同步刷新
+CapsLock & b::
+{
+Send +{RButton}w{enter}
+Sleep 300
+Send browser-sync start --server --files "css/*.css, *.html"{enter}
+return
+}
 
 
 
