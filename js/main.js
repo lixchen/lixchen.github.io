@@ -23,7 +23,7 @@ MyArticle.prototype.render = function (obj) {
         const article = document.createElement('article');
         article.className = 'article';
         article.innerHTML = `
-        <h3>${value.title}</h3>
+        <h3><a class="read" href="pages.html">${value.title}</a></h3>
         <time>${value.time}</time>
         <span>${value.type}</span>
         <p>${value.description}</p>
