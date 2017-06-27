@@ -1,5 +1,5 @@
 # Javascript 对象之间的关系
-
+<time id="timer">s</time>
 JavaScript 有 *"一切皆为对象"* 的说法。
 
 ```js

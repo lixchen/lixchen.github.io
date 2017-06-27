@@ -31,6 +31,7 @@
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     document.getElementById('main').innerHTML = marked(xhr.responseText);
+                    timer.innerHTML =document.lastModified;
                     // 这个库必须最后添加
                     document.head.appendChild(scri);
                 } else {
