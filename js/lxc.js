@@ -38,7 +38,6 @@ function animate(elem, json, type) {
 
     }, 30);
 };
-
 // 匀速
 function move(elem, step, json) {
     clearInterval(elem.timer);
@@ -60,3 +59,53 @@ function move(elem, step, json) {
         }
     }, 30);
 };
+// 设置样式和获取样式
+function css(elem, cssRules, value) {
+    if (typeof cssRules === 'string') {
+        if (!value) {
+            let result;
+            if (cssRules === 'width' || cssRules === 'height') {
+                // 返回的是元素的总高度(padding+border)
+                result = elem.getBoundingClientRect()[cssRules] + 'px';
+            } else {
+                // 大多数情况下可以使用getComputedStyle(elem, null)[cssRules]
+                result = document.defaultView.getComputedStyle(elem, null).getPropertyValue(cssRules);
+            }
+            return result === 'auto' ? '0px' : result;
+        } else {
+            elem.style[cssRules] = value;
+        }
+    } else {
+        // 传入json的情况下
+        for (let i in cssRules) {
+            elem.style[i] = cssRules[i];
+        }
+    }
+}
+// DOM选择函数
+function $(selector) {
+    const idReg = /^#[a-zA-Z]+([-_]?[a-zA-z]+)*$/g;
+    const classReg = /^\.[a-zA-Z]+([-_]?[a-zA-z]+)*$/g;
+    const tagReg = /^[a-zA-Z]+[a-zA-Z]*$/g;
+    let selectorType = 'querySelectorAll';
+    // 判断改用哪种方式获取元素
+    if (idReg.test(selector)) {
+        selectorType = 'getElementById';
+        selector = selector.substr(1, selector.length);
+    } else if (classReg.test(selector)) {
+        selectorType = 'getElementsByClassName';
+        selector = selector.substr(1, selector.length)
+    } else if (tagReg.test(selector)) {
+        selectorType = 'getElementsByTagName';
+    } else {
+        return [];
+    }
+    // 将选择到的元素集合转换成数组
+    const elems = document[selectorType](selector) || [];
+    // 如果是getElementById获取的元素，则直接返回
+    if (elems.length) {
+        return Array.from(elems);
+    } else {
+        return elems;
+    }
+}
