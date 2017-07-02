@@ -40,7 +40,7 @@
         return new Element(tagName, props, children);
     }
 
-
+    // 用js对象表示DOM树
     let ul = el('ul', {
         id: 'list'
     }, [
@@ -57,6 +57,30 @@
 
     var ulRoot = ul.render();
     document.body.appendChild(ulRoot);
+
+
+    function diff(oldTree, newTree) {
+        var index = 0; // 当前节点的标志
+        var patches = {}; // 记录每个节点差异的对象
+        dfsWalk(oldTree, newTree, index, patches);
+        return patches;
+    }
+
+    function dfsWalk(oldTree, newTree, index, patches) {
+        var currentPatch = [];
+        if (newTree === null) {
+
+        } else if (typeof(oldTree) === 'string' && typeof(newTree) === 'string') {
+            if (newTree !== oldTree) {
+                currentPatch.push({
+                    type: patch.TEXT,
+                    content: newTree
+                });
+            }
+        } else if (oldTree.tagName === newTree.tagName && oldTree.key === newTree.key) {
+            var propsPatches = diffProps(oldTree, newTree);
+        }
+    }
     </script>
 </body>
 
