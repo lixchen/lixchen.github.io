@@ -40,6 +40,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 	::jsc::javascript
 ;css
 	::bgc::backgroundColor
+;html
+::begin::<{!}DOCTYPE html>{enter}<html lang="en">{enter}<head>{enter}<meta charset="UTF-8">{enter}<meta name="viewport" content="width=device-width, initial-scale=1.0">{enter}<meta http-equiv="X-UA-Compatible" content="ie=edge">{enter}<title>test</title>{enter}</head>{enter}<body>{enter 2}</body>{enter}</html>{up 2}
 
 
 
