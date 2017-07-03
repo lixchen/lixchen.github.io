@@ -32,7 +32,16 @@ ul {
 
 
 /* 内容 */
-
+.type {
+    display: inline-block;
+    width: max-content;
+    background: #000;
+    border-radius: .2em;
+    padding: .2em;
+    margin-left: .3em;
+    color: #fff;
+    cursor: pointer;
+}
 header {
     position: fixed;
     top: 0;
@@ -42,6 +51,7 @@ header {
     border-top: 2px solid #007acc;
     box-shadow: 0 0 6px #000;
     overflow: hidden;
+    z-index: 100;
 }
 header a {
     display: block;
