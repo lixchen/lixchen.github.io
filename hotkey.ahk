@@ -21,7 +21,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 	::getbc::getElementsByClassName('');{left 3}
 	::getbt::getElementsByTagName('');{left 3}
 	::ques::querySelector('');{left 3}
-	::quesa::querySelectorAll(''){left 3}
+	::quesa::querySelectorAll('');{left 3}
 ;timer
 	::sett::setTimeout(, 1000);{left 8}
 	::seti::setInterval(, 1000);{left 8}
