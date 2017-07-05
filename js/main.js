@@ -39,7 +39,7 @@ MyArticle.prototype.render = function (obj) {
 
             var article = document.createElement('article');
             article.className = 'article';
-            article.innerHTML = '\n        <h3><a class="read" href="pages.html#' + value.title + '">' + value.title + '</a></h3>\n        <time>' + value.time + '</time>\n        <span class="type">' + value.type + '</span>\n        <p>' + value.description + '</p>\n        <a class="read" href="pages.html#' + value.title + '">\u9605\u8BFB\u5168\u6587</a>\n        ';
+            article.innerHTML = '\n        <h3><a class="read" href="pages.html#' + value.title + '">' + value.title + '</a></h3>\n        <time>' + value.time + '</time>\n        <span class="type"><a href="index.html#' + value.type + '">' + value.type + '</a></span>\n        <p>' + value.description + '</p>\n        <a class="read" href="pages.html#' + value.title + '">\u9605\u8BFB\u5168\u6587</a>\n        ';
             this.fragment.appendChild(article);
         }
     } catch (err) {

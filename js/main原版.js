@@ -26,7 +26,7 @@ MyArticle.prototype.render = function (obj) {
         article.innerHTML = `
         <h3><a class="read" href="pages.html#${value.title}">${value.title}</a></h3>
         <time>${value.time}</time>
-        <span class="type">${value.type}</span>
+        <span class="type"><a href="index.html#${value.type}">${value.type}</a></span>
         <p>${value.description}</p>
         <a class="read" href="pages.html#${value.title}">阅读全文</a>
         `;
