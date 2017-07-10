@@ -4,38 +4,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <meta http-equiv="X-UA-Compatible " content="ie=edge ">
-    <title>Document</title>
-    <link rel="stylesheet " href="lib/css/normalize.css ">
-    <link rel="stylesheet " href="css/main.css ">
-    <link rel="shortcut icon " href="../favicon.ico " type="image/x-icon ">
+    <title>Lxc's Blog</title>
+    <link href="http://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/main.css">
 </head>
 
 <body>
-    <header>
-        <h1><a href="https://lixchen.github.io "><span>Lxc</span>'s Blog</a></h1>
-        <nav>
-            <ul>
-                <li><a href="index.html ">HOME</a></li>
-                <li><a href="index.html#html ">HTML</a></li>
-                <li><a href="index.html#css ">CSS</a></li>
-                <li><a href="index.html#javascript ">JavaScript</a></li>
-            </ul>
-        </nav>
+    <header class="header">
+        <h1>
+        <a href="/">Lxc's Blog</a>
+        </h1>
     </header>
-    <div class="container ">
-        <aside class="aside ">
-
-        </aside>
-        <div id="main " class="main ">
-        </div>
+    <p class="links">
+        <a href="https://github.com/lixchen">
+            <img src="./img/github.png" alt="github">
+        </a>
+    </p>
+    <div id="main" class="main">
     </div>
-    <footer>footer</footer>
-    <script src="js/data.js "></script>
-    <script src="js/main.js "></script>
+    <script src="./js/main.js"></script>
     <script>
-        var lxc = new MyArticle("main ", data);
-        lxc.run();
+      get('./data.json');
     </script>
 </body>
 

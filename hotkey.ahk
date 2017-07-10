@@ -113,20 +113,17 @@ return
 
 
 
-;创建文件
+;创建文件 输入法需要默认为英文
 CreateFile(lxc) 
 {
 Send !r
 Sleep 400
-Send type nul>zzz.%lxc%{enter}
-Send !{F4}
-Sleep 1100
-Send {end}{F2}
+Send %lxc%{enter}!{F4}
 return
 }
-CapsLock & 1:: CreateFile("html")
-CapsLock & 2:: CreateFile("css")
-CapsLock & 3:: CreateFile("js")
+CapsLock & 1:: CreateFile("type nul>index.html")
+CapsLock & 2:: CreateFile("type nul>main.css")
+CapsLock & 3:: CreateFile("type nul>main.js")
 
 
 

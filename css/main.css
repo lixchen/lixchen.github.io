@@ -1,174 +1,54 @@
-/* reset */
-
-
-/* 设置62.5%，是因为有些设备的1px并不是1px(参考图解css3)，这样可以在任何设备上都保持字体尺寸合适 */
-
-* {
-    box-sizing: border-box;
-}
-
-html {
-    /* 10px(多数情况下) */
-    font-size: 62.5%;
-    font-weight: normal;
-    width: 100%;
-    height: 100%;
-    font-family: georgia, arial, sans-serif;
-}
-
-body {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    font-size: 1.6em;
-    background-color: #f7f7f7;
-}
-
-ul {
-    margin: 0;
+.main ul {
     padding: 0;
-    list-style: none;
+    list-style-type: none;
 }
 
-
-/* 内容 */
-.type {
-    display: inline-block;
-    width: max-content;
-    background: #000;
-    border-radius: .2em;
-    padding: .2em;
-    margin-left: .3em;
-    color: #fff;
-    cursor: pointer;
-}
-.main .type a {
-    color: #fff;
-}
-header {
-    width: 100%;
-    height: 4em;
-    background: #fff;
-    border-top: 2px solid #007acc;
-    box-shadow: 0 0 6px #000;
-    overflow: hidden;
-    z-index: 100;
-}
-header a {
-    display: block;
-    text-decoration: none;
-    color: #000;
-    font-weight: 700;
-}
-header a:hover {
-    color: #f33;
-}
-header h1 {
-    float: left;
-    height: 100%;
-    margin-left: 2em;
-}
-header h1 a {
-    text-decoration: none;
-    font-size: .6em;
-}
-header h1 span {
-    padding: .2em;
-    background: #000;
-    color: #fff;
-    border-radius: .2em;
-    margin-right: .2em;
-}
-header nav {
-    float: right;
-    width: 40%;
-    height: 100%;
-    margin-right: 2em;
-    display: table;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #fff;
+.main ul li {
+    border-bottom: 1px solid #e6e6e6;
 }
 
-header nav ul {
-    display: table-row;
+.main ul h3 {
+    color: #999;
 }
 
-header nav ul li {
-    display: table-cell;
-    width: 20%;
-    text-align: center;
-    vertical-align: middle;
+.main span {
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  padding: 5px;
+  margin-right: 40px;
 }
-
-
-
-.main {
-    width: 80%;
-    margin: 0 auto;
-    margin-top: 2em;
-    padding-left: 3em;
-    padding-right: 2em;
+.main .last-page,
+.main .next-page {
+  background: #007acc;
+  border-radius: 3px;
+  color: #fff;
 }
-
-
-.main a {
-    display: block;
-    text-decoration: none;
-    color: #555;
-}
-.main .article {
-    border-bottom: 1px solid #ddd;
-    padding: .5em;
-    padding-bottom: 1em;
-    color:#555;
-}
-.main .article:hover {
-    color: #000;
-}
-.main .article:hover h3 a {
-    color: #f33;
-}
-.main .article > a {
-    width: 5em;
-    padding: .3em;
-    color: #007acc;
-    line-height: 2em;
-    background-color: #f5f5d5;
-    border: 1px solid #333;
-    border-radius: .2em;
-    box-shadow: 2px 2px 2px #000;
-    text-align: center;
-}
-.main .article > a:hover {
-    color: #f5f5d5;
-    background-color: #1fa0ae;
-}
-.main .article > a:active {
-    border: 0;
+.main .last-page:active,
+.main .next-page:active {
+  font-size: 14px;
 }
 .main .page {
-	border: 1px solid #fff;
-	padding: .3em;
-	text-align: center;
-} 
-footer {
-	width: 100%;
-	padding: 1em;
-	background: #000;
-	color: #fff;
-	text-align: center;
+  text-align: center;
 }
-
-@media screen and (max-device-width: 768px){
-    header h1 {
-        display: none;
-    }
-    header nav {
-        float: none;
-        width: 100%;
-    }
-    .main {
-        width: 100%;
-    }
+.main .page-num {
+  position: relative;
+  color: #000;
+}
+.main .page-num:hover {
+  color: #e00;
+}
+.main .page-num::after {
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 5px;
+  display: block;
+  width: 2px;
+  height: 20px;
+  background: #ddd;
+  transform: skew(-20deg);
+}
+.main .page-num+.page-num::after {
+  display: none;
 }
