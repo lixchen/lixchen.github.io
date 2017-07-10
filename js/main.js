@@ -1,7 +1,5 @@
 "use strict";
 
-
-
 function MyArticle(elemId, data) {
     this.elem = document.getElementById(elemId);
     this.data = data;
@@ -13,62 +11,106 @@ function MyArticle(elemId, data) {
 }
 
 // 将数据分类 并且限制最多渲染10项
-MyArticle.prototype.classify = function() {
+MyArticle.prototype.classify = function () {
+    var _this = this;
+
     if (this.category) {
-        this.data = this.data.filter(item => (item.type === this.category));
-        this.topTenData = this.data.filter((item, index) => (index >= 10 * this.count && index < 10 * (this.count + 1)));
+        this.data = this.data.filter(function (item) {
+            return item.type === _this.category;
+        });
+        this.topTenData = this.data.filter(function (item, index) {
+            return index >= 10 * _this.count && index < 10 * (_this.count + 1);
+        });
     } else {
-        this.topTenData = this.data.filter((item, index) => (index >= 10 * this.count && index < 10 * (this.count + 1)));
+        this.topTenData = this.data.filter(function (item, index) {
+            return index >= 10 * _this.count && index < 10 * (_this.count + 1);
+        });
     }
 };
 // 渲染数据到页面
-MyArticle.prototype.render = function(obj) {
-    const ul = document.createElement('ul');
-    for (let value of obj) {
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <h3>${value.time}</h3>
-            <h2><a href='page.html#${value.title}'>${value.title}</a></h2>
-        `;
-        ul.appendChild(li);
+MyArticle.prototype.render = function (obj) {
+    var ul = document.createElement('ul');
+    var _iteratorNormalCompletion = true;
+    var _didIteratorError = false;
+    var _iteratorError = undefined;
+
+    try {
+        for (var _iterator = obj[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+            var value = _step.value;
+
+            var li = document.createElement('li');
+            li.innerHTML = '\n            <h3>' + value.time + '</h3>\n            <h2><a href=\'page.html#' + value.title + '\'>' + value.title + '</a></h2>\n        ';
+            ul.appendChild(li);
+        }
+    } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+    } finally {
+        try {
+            if (!_iteratorNormalCompletion && _iterator.return) {
+                _iterator.return();
+            }
+        } finally {
+            if (_didIteratorError) {
+                throw _iteratorError;
+            }
+        }
     }
+
     this.fragment.appendChild(ul);
 };
 // 分页功能
-MyArticle.prototype.paging = function() {
-    const len = this.data.length;
-    const pageNum = Math.ceil(len / 10);
+MyArticle.prototype.paging = function () {
+    var len = this.data.length;
+    var pageNum = Math.ceil(len / 10);
     if (len > 10) {
         this.page = document.createElement("div");
         this.page.className = 'page';
         if (pageNum > 1) {
-            this.page.innerHTML = `
-            <span class="last-page">last</span>
-            <span class="next-page">next</span>
-            `;
+            this.page.innerHTML = '\n            <span class="last-page">last</span>\n            <span class="next-page">next</span>\n            ';
         }
-        for (let i = 0; i < pageNum; i++) {
-            const span = document.createElement('span');
-            span.className = 'page-num'
+        for (var i = 0; i < pageNum; i++) {
+            var span = document.createElement('span');
+            span.className = 'page-num';
             span.innerHTML = i + 1;
             this.page.insertBefore(span, this.page.lastElementChild);
         }
         this.fragment.appendChild(this.page);
     }
-
 };
 
-MyArticle.prototype.handler = function(event) {
-    const that = this;
-    const next = this.page.getElementsByClassName('next-page')[0];
-    const last = this.page.getElementsByClassName('last-page')[0];
-    const pageNum = this.page.getElementsByClassName('page-num');
-    const len = this.data.length;
-    return function(event) {
-        for (let value of pageNum) {
-            if (event.target === value) {
-                that.count = (parseInt(value.textContent) - 1) < 1 ? 0 : (parseInt(value.textContent) - 1);
-                that.run();
+MyArticle.prototype.handler = function (event) {
+    var that = this;
+    var next = this.page.getElementsByClassName('next-page')[0];
+    var last = this.page.getElementsByClassName('last-page')[0];
+    var pageNum = this.page.getElementsByClassName('page-num');
+    var len = this.data.length;
+    return function (event) {
+        var _iteratorNormalCompletion2 = true;
+        var _didIteratorError2 = false;
+        var _iteratorError2 = undefined;
+
+        try {
+            for (var _iterator2 = pageNum[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var value = _step2.value;
+
+                if (event.target === value) {
+                    that.count = parseInt(value.textContent) - 1 < 1 ? 0 : parseInt(value.textContent) - 1;
+                    that.run();
+                }
+            }
+        } catch (err) {
+            _didIteratorError2 = true;
+            _iteratorError2 = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                    _iterator2.return();
+                }
+            } finally {
+                if (_didIteratorError2) {
+                    throw _iteratorError2;
+                }
             }
         }
 
@@ -87,17 +129,17 @@ MyArticle.prototype.handler = function(event) {
             }
             that.run();
         }
-    }
+    };
 };
 // 事件处理程序
-MyArticle.prototype.listener = function() {
+MyArticle.prototype.listener = function () {
     if (this.page) {
         this.elem.addEventListener('click', this.handler());
     }
 };
 
 // 运行实例
-MyArticle.prototype.run = function() {
+MyArticle.prototype.run = function () {
     this.classify();
     this.render(this.topTenData);
     this.paging();
@@ -106,13 +148,10 @@ MyArticle.prototype.run = function() {
     this.listener();
 };
 
-
-
-
 function get(fileName) {
     var xhr = new XMLHttpRequest();
     xhr.open('GET', fileName);
-    xhr.onload = function() {
+    xhr.onload = function () {
         if (xhr.status === 200) {
             var data = JSON.parse(xhr.responseText);
             var lxc = new MyArticle("main", data);
