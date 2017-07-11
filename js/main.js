@@ -1,8 +1,17 @@
 "use strict";
+// 处理数据，暂时还没有排序功能
+
+function dataHandle(data) {
+    var newData = [];
+    for (var prop in data) {
+        newData = newData.concat(data[prop]);
+    }
+    return newData;
+}
 
 function MyArticle(elemId, data) {
     this.elem = document.getElementById(elemId);
-    this.data = data;
+    this.data = dataHandle(data);
     this.category = location.hash.substr(1);
     this.fragment = document.createDocumentFragment();
     this.count = 0;
@@ -39,7 +48,7 @@ MyArticle.prototype.render = function (obj) {
             var value = _step.value;
 
             var li = document.createElement('li');
-            li.innerHTML = '\n            <h3>' + value.time + '</h3>\n            <h2><a href=\'page.html#' + value.title + '\'>' + value.title + '</a></h2>\n        ';
+            li.innerHTML = '\n            <h3>' + value.time + '<span>' + value.type + '</span></h3>\n            <h2><a href=\'page.html#' + value.title + '\'>' + value.title + '</a></h2>\n        ';
             ul.appendChild(li);
         }
     } catch (err) {

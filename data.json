@@ -1,78 +1,66 @@
-[
+{
+  "css": [
     {
-        "title": "好文链接",
-        "time": "Jul 11 2017"
+      "title": "article26",
+      "time": "Jul 11 2017",
+      "type": "css"
     },
     {
-        "title": "article26",
-        "time": "Jul 11 2017"
+      "title": "article27",
+      "time": "Jul 10 2017",
+      "type": "css"
     },
     {
-        "title": "basic",
-        "time": "Jul 11 2017"
+      "title": "github_pages",
+      "time": "Jul 10 2017",
+      "type": "css"
     },
     {
-        "title": "好文链接",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "article26",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "basic",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "好文链接",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "article26",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "basic",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "好文链接",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "article26",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "basic",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "css",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "待整理笔记",
-        "time": "Jul 11 2017"
-    },
-    {
-        "title": "article27",
-        "time": "Jul 10 2017"
-    },
-    {
-        "title": "github_pages",
-        "time": "Jul 10 2017"
-    },
-    {
-        "title": "JavaScript加载和执行",
-        "time": "Jul 10 2017"
-    },
-    {
-        "title": "virtual_dom.html",
-        "time": "Jul 10 2017"
-    },
-    {
-        "title": "virtual_dom",
-        "time": "Jul 10 2017"
+      "title": "选项卡",
+      "time": "Jul 10 2017",
+      "type": "css"
     }
-]
+  ],
+  "html": [
+    {
+      "title": "各类型之间的转换",
+      "time": "Jul 10 2017",
+      "type": "html"
+    },
+    {
+      "title": "编码规范",
+      "time": "Jul 10 2017",
+      "type": "html"
+    }
+  ],
+  "javascript": [],
+  "nodejs": [
+    {
+      "title": "JavaScript加载和执行",
+      "time": "Jul 10 2017",
+      "type": "nodejs"
+    },
+    {
+      "title": "virtual_dom.html",
+      "time": "Jul 10 2017",
+      "type": "nodejs"
+    },
+    {
+      "title": "virtual_dom",
+      "time": "Jul 10 2017",
+      "type": "nodejs"
+    },
+    {
+      "title": "好文链接",
+      "time": "Jul 11 2017",
+      "type": "nodejs"
+    }
+  ],
+  "待整理笔记": [
+    {
+      "title": "getComputedStyle和getBoundingClientRect",
+      "time": "Jul 10 2017",
+      "type": "待整理笔记"
+    }
+  ]
+}
