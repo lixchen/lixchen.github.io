@@ -15,7 +15,7 @@
 <body>
     <header class="header">
         <h1>
-        <a href="/">Lxc's Blog</a>
+            <a href="/">Lxc's Blog</a>
         </h1>
     </header>
     <p class="links">
@@ -25,25 +25,36 @@
     </p>
     <div id="main" class="main">
     </div>
-        <script>
+    <script>
         var scri = document.createElement('script');
         scri.src = "lib/js/prism.js";
-        function get(fileName) {
+        function get(fileName, cb) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', fileName);
             xhr.onload = function () {
                 if (xhr.status === 200) {
-                    document.getElementById('main').innerHTML = marked(xhr.responseText);
-                    // 这个库必须最后添加
-                    document.head.appendChild(scri);
+                    cb(xhr.responseText);
                 } else {
                     document.getElementById('main').innerHTML = '这篇文章已经被删除。';
                 }
             };
             xhr.send();
         }
+        function addTime(data) {
+            data = JSON.parse(data);
+            var hash = location.hash.substr(1);
+            document.getElementById('time').innerHTML = data.filter(function (item) {
+                return item.title === hash;
+            })[0].time;
+        }
+        function addContent(data) {
+            document.getElementById('main').innerHTML = `<p id='time'>321</p>${marked(data)}`;
+            // 这个库必须最后添加
+            document.head.appendChild(scri);
+            get('./data.json', addTime);
+        }
         var hash = location.hash.substr(1);
-        get('./doc/' + hash + '.md');
+        get('./doc/' + hash + '.md', addContent);
     </script>
 </body>
 

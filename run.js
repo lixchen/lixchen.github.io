@@ -6,13 +6,18 @@ var filesName = fs.readdirSync('./doc/', 'utf8');
 
 filesName.forEach((item, index) => {
     var fileMessage = fs.statSync(`./doc/${item}`);
-    // var mtime = `${fileMessage.mtime.getFullYear()}-${fileMessage.mtime.getMonth()+1}-${fileMessage.mtime.getDate()}`;
-    var mtime = fileMessage.mtime.toDateString().slice(4);
     data[index] = {
         title: item.replace('.md', ''),
-        time: mtime,
+        time: fileMessage.mtime,
     }
-    fs.writeFile('./data.json', JSON.stringify(data));
+});
+data.sort(function (a, b) {
+    return b.time - a.time;
+});
+for(var i = 0; i < data.length; i++) {
+    data[i].time = data[i].time.toDateString().slice(4);
+}
+fs.writeFile('./data.json', JSON.stringify(data));
 
-    console.log("数据加载完成.");
-})
+console.log(data);
+console.log(`\n总计${data.length}条数据,已加载完成.`);

@@ -10,13 +10,18 @@
 .main ul h3 {
     color: #999;
 }
-
+.main .page {
+  text-align: center;
+}
 .main span {
   display: inline-block;
   text-align: center;
   cursor: pointer;
   padding: 5px;
   margin-right: 40px;
+}
+.main .next-page {
+  margin-right: 0;
 }
 .main .last-page,
 .main .next-page {
@@ -28,9 +33,7 @@
 .main .next-page:active {
   font-size: 14px;
 }
-.main .page {
-  text-align: center;
-}
+
 .main .page-num {
   position: relative;
   color: #000;
