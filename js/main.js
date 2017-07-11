@@ -48,7 +48,7 @@ MyArticle.prototype.render = function (obj) {
             var value = _step.value;
 
             var li = document.createElement('li');
-            li.innerHTML = '\n            <h3>' + value.time + '<span>' + value.type + '</span></h3>\n            <h2><a href=\'page.html#' + value.type + '/' + value.title + '\'>' + value.title + '</a></h2>\n        ';
+            li.innerHTML = '\n            <h3>' + value.time + '/ <a href=\'#' + value.type + '\'>' + value.type + '</a></h3>\n            <h2><a href=\'page.html#' + value.type + '/' + value.title + '\'>' + value.title + '</a></h2>\n        ';
             ul.appendChild(li);
         }
     } catch (err) {
@@ -105,6 +105,7 @@ MyArticle.prototype.handler = function (event) {
 
                 if (event.target === value) {
                     that.count = parseInt(value.textContent) - 1 < 1 ? 0 : parseInt(value.textContent) - 1;
+                    window.scrollTo(0, 0);
                     that.run();
                 }
             }
@@ -129,6 +130,7 @@ MyArticle.prototype.handler = function (event) {
                 that.count = parseInt(len / 10);
                 return false;
             }
+            window.scrollTo(0, 0);
             that.run();
         } else if (event.target === last) {
             that.count--;
@@ -136,6 +138,7 @@ MyArticle.prototype.handler = function (event) {
                 that.count = 0;
                 return false;
             }
+            window.scrollTo(0, 0);
             that.run();
         }
     };
@@ -146,6 +149,12 @@ MyArticle.prototype.listener = function () {
         this.elem.addEventListener('click', this.handler());
     }
 };
+// 分类跳转
+MyArticle.prototype.jump = function () {
+    window.addEventListener('hashchange', function () {
+        location.reload();
+    });
+};
 
 // 运行实例
 MyArticle.prototype.run = function () {
@@ -154,6 +163,7 @@ MyArticle.prototype.run = function () {
     this.paging();
     this.elem.innerHTML = '';
     this.elem.appendChild(this.fragment);
+    this.jump();
     this.listener();
 };
 

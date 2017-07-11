@@ -10,10 +10,16 @@
 .main ul h3 {
     color: #999;
 }
+.main ul h3 a:hover {
+  color: #007acc;
+}
+.main ul h3 a::after {
+  content: none;
+}
 .main .page {
   text-align: center;
 }
-.main span {
+.main .page span {
   display: inline-block;
   text-align: center;
   cursor: pointer;
