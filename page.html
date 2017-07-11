@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Lxc's Blog</title>
-    <link href="http://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,600|Roboto+Mono" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="./lib/css/prism.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="./css/page.css">
@@ -19,15 +19,24 @@
         </h1>
     </header>
     <p class="links">
-        <a href="https://github.com/lixchen">
+        <a href="//github.com/lixchen">
             <img src="./img/github.png" alt="github">
         </a>
     </p>
     <div id="main" class="main">
     </div>
     <script>
+        var hash = location.hash.substr(1);
         var scri = document.createElement('script');
         scri.src = "lib/js/prism.js";
+        // 处理数据
+        function dataHandle(data) {
+            var newData = []
+            for (let prop in data) {
+                newData = newData.concat(data[prop]);
+            }
+            return newData;
+        }
         function get(fileName, cb) {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', fileName);
@@ -41,19 +50,17 @@
             xhr.send();
         }
         function addTime(data) {
-            data = JSON.parse(data);
-            var hash = location.hash.substr(1);
+            data = dataHandle(JSON.parse(data));
             document.getElementById('time').innerHTML = data.filter(function (item) {
-                return item.title === hash;
+                return item.title === hash.substr(hash.indexOf('/') + 1);
             })[0].time;
         }
         function addContent(data) {
-            document.getElementById('main').innerHTML = `<p id='time'>321</p>${marked(data)}`;
+            document.getElementById('main').innerHTML = `<p id='time'></p>${marked(data)}`;
             // 这个库必须最后添加
             document.head.appendChild(scri);
             get('./data.json', addTime);
         }
-        var hash = location.hash.substr(1);
         get('./doc/' + hash + '.md', addContent);
     </script>
 </body>

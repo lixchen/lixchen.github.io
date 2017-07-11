@@ -1,6 +1,5 @@
 # JavaScript 加载和执行
 
-2017/07/01
 
 由于 JavaScript 的阻塞特性，大多数浏览器在执行 JavaScript 代码时, 不能同时作其他任何事情。所以一个页面在加载时，JavaScript 执行过程越久，浏览器等待响应时间越长。
 

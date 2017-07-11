@@ -36,7 +36,7 @@ MyArticle.prototype.render = function (obj) {
         const li = document.createElement('li');
         li.innerHTML = `
             <h3>${value.time}<span>${value.type}</span></h3>
-            <h2><a href='page.html#${value.title}'>${value.title}</a></h2>
+            <h2><a href='page.html#${value.type}/${value.title}'>${value.title}</a></h2>
         `;
         ul.appendChild(li);
     }
