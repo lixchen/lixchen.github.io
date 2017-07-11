@@ -59,4 +59,4 @@ folders.forEach(function (item) {
 fs.writeFile('./data.json', JSON.stringify(data));
 
 console.log(data);
-console.log(`\n总计${data.length}条数据,已加载完成.`);
+console.log(`\n数据载完成.`);
