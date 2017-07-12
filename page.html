@@ -26,42 +26,45 @@
     <div id="main" class="main">
     </div>
     <script>
-        var hash = location.hash.substr(1);
-        var scri = document.createElement('script');
-        scri.src = "lib/js/prism.js";
-        // 处理数据
-        function dataHandle(data) {
-            var newData = []
-            for (let prop in data) {
-                newData = newData.concat(data[prop]);
+    var hash = location.hash.substr(1);
+    var scri = document.createElement('script');
+    scri.src = "lib/js/prism.js";
+    // 处理数据
+    function dataHandle(data) {
+        var newData = []
+        for (var prop in data) {
+            newData = newData.concat(data[prop]);
+        }
+        return newData;
+    }
+
+    function get(fileName, cb) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', fileName);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                cb(xhr.responseText);
+            } else {
+                document.getElementById('main').innerHTML = '这篇文章已经被删除。';
             }
-            return newData;
-        }
-        function get(fileName, cb) {
-            var xhr = new XMLHttpRequest();
-            xhr.open('GET', fileName);
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    cb(xhr.responseText);
-                } else {
-                    document.getElementById('main').innerHTML = '这篇文章已经被删除。';
-                }
-            };
-            xhr.send();
-        }
-        function addTime(data) {
-            data = dataHandle(JSON.parse(data));
-            document.getElementById('time').innerHTML = data.filter(function (item) {
-                return item.title === hash.substr(hash.indexOf('/') + 1);
-            })[0].time;
-        }
-        function addContent(data) {
-            document.getElementById('main').innerHTML = `<p id='time'></p>${marked(data)}`;
-            // 这个库必须最后添加
-            document.head.appendChild(scri);
-            get('./data.json', addTime);
-        }
-        get('./doc/' + hash + '.md', addContent);
+        };
+        xhr.send();
+    }
+
+    function addTime(data) {
+        data = dataHandle(JSON.parse(data));
+        document.getElementById('time').innerHTML = data.filter(function(item) {
+            return item.title === hash.substr(hash.indexOf('/') + 1);
+        })[0].time;
+    }
+
+    function addContent(data) {
+        document.getElementById('main').innerHTML = "<p id='time'></p>" + marked(data);
+        // 这个库必须最后添加
+        document.head.appendChild(scri);
+        get('./data.json', addTime);
+    }
+    get('./doc/' + hash + '.md', addContent);
     </script>
 </body>
 
