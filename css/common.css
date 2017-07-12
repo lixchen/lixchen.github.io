@@ -20,7 +20,7 @@ a {
     position: relative;
     width: max-content;
     text-decoration: none;
-    color: #444;
+     color: #444; 
     transition: all .3s ease;
     cursor: pointer;
 }
@@ -64,6 +64,7 @@ a:hover::after {
 
 .main {
     max-width: 700px;
+    min-width: 400px;
     margin: 40px auto;
     padding: 0 30px;
 }
@@ -74,4 +75,16 @@ a:hover::after {
 
 .links a::after {
     display: none;
+}
+
+@media screen and (max-width: 600px) {
+  body {
+    font-size: 12px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  h3 {
+    font-size: 14px;
+  }
 }
