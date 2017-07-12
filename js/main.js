@@ -39,33 +39,11 @@ MyArticle.prototype.classify = function () {
 // 渲染数据到页面
 MyArticle.prototype.render = function (obj) {
     var ul = document.createElement('ul');
-    var _iteratorNormalCompletion = true;
-    var _didIteratorError = false;
-    var _iteratorError = undefined;
-
-    try {
-        for (var _iterator = obj[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-            var value = _step.value;
-
-            var li = document.createElement('li');
-            li.innerHTML = '\n            <h3>' + value.time + '/ <a href=\'#' + value.type + '\'>' + value.type + '</a></h3>\n            <h2><a href=\'page.html#' + value.type + '/' + value.title + '\'>' + value.title + '</a></h2>\n        ';
-            ul.appendChild(li);
-        }
-    } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-    } finally {
-        try {
-            if (!_iteratorNormalCompletion && _iterator.return) {
-                _iterator.return();
-            }
-        } finally {
-            if (_didIteratorError) {
-                throw _iteratorError;
-            }
-        }
+    for (var prop in obj) {
+        var li = document.createElement('li');
+        li.innerHTML = '\n            <h3>' + obj[prop].time + '/ <a href=\'#' + obj[prop].type + '\'>' + obj[prop].type + '</a></h3>\n            <h2><a href=\'page.html#' + obj[prop].type + '/' + obj[prop].title + '\'>' + obj[prop].title + '</a></h2>\n        ';
+        ul.appendChild(li);
     }
-
     this.fragment.appendChild(ul);
 };
 // 分页功能
@@ -95,35 +73,13 @@ MyArticle.prototype.handler = function (event) {
     var pageNum = this.page.getElementsByClassName('page-num');
     var len = this.data.length;
     return function (event) {
-        var _iteratorNormalCompletion2 = true;
-        var _didIteratorError2 = false;
-        var _iteratorError2 = undefined;
-
-        try {
-            for (var _iterator2 = pageNum[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-                var value = _step2.value;
-
-                if (event.target === value) {
-                    that.count = parseInt(value.textContent) - 1 < 1 ? 0 : parseInt(value.textContent) - 1;
-                    window.scrollTo(0, 0);
-                    that.run();
-                }
-            }
-        } catch (err) {
-            _didIteratorError2 = true;
-            _iteratorError2 = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion2 && _iterator2.return) {
-                    _iterator2.return();
-                }
-            } finally {
-                if (_didIteratorError2) {
-                    throw _iteratorError2;
-                }
+        for (var prop in pageNum) {
+            if (event.target === pageNum[prop]) {
+                that.count = parseInt(pageNum[prop].textContent) - 1 < 1 ? 0 : parseInt(pageNum[prop].textContent) - 1;
+                window.scrollTo(0, 0);
+                that.run();
             }
         }
-
         if (event.target === next) {
             that.count++;
             if (that.count > len / 10) {

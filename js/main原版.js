@@ -32,11 +32,11 @@ MyArticle.prototype.classify = function () {
 // 渲染数据到页面
 MyArticle.prototype.render = function (obj) {
     const ul = document.createElement('ul');
-    for (let value of obj) {
+    for (let prop in obj) {
         const li = document.createElement('li');
         li.innerHTML = `
-            <h3>${value.time}/ <a href='#${value.type}'>${value.type}</a></h3>
-            <h2><a href='page.html#${value.type}/${value.title}'>${value.title}</a></h2>
+            <h3>${obj[prop].time}/ <a href='#${obj[prop].type}'>${obj[prop].type}</a></h3>
+            <h2><a href='page.html#${obj[prop].type}/${obj[prop].title}'>${obj[prop].title}</a></h2>
         `;
         ul.appendChild(li);
     }
@@ -73,9 +73,9 @@ MyArticle.prototype.handler = function (event) {
     const pageNum = this.page.getElementsByClassName('page-num');
     const len = this.data.length;
     return function (event) {
-        for (let value of pageNum) {
-            if (event.target === value) {
-                that.count = (parseInt(value.textContent) - 1) < 1 ? 0 : (parseInt(value.textContent) - 1);
+        for (let prop in pageNum) {
+            if (event.target === pageNum[prop]) {
+                that.count = (parseInt(pageNum[prop].textContent) - 1) < 1 ? 0 : (parseInt(pageNum[prop].textContent) - 1);
                 window.scrollTo(0,0);
                 that.run();
             }
