@@ -1,13 +1,23 @@
 "use strict";
-// 处理数据，暂时还没有排序功能
+// 处理数据，格式化时间并排序
 function dataHandle(data) {
-    var newData = []
-    for (let prop in data) {
+    var newData = [];
+    for (var prop in data) {
         newData = newData.concat(data[prop]);
     }
+
+    newData.sort(function (a, b) {
+        return new Date(b.time) - new Date(a.time)
+    })
+    newData.forEach(function (item) {
+        // xxxx-xx-xx 格式
+        item.time = item.time.slice(0, 10);
+        // Jul xx xxx 格式
+        item.time = new Date(item.time).toDateString().slice(4)
+    });
+
     return newData;
 }
-
 
 function MyArticle(elemId, data) {
     this.elem = document.getElementById(elemId);
@@ -76,7 +86,7 @@ MyArticle.prototype.handler = function (event) {
         for (let prop in pageNum) {
             if (event.target === pageNum[prop]) {
                 that.count = (parseInt(pageNum[prop].textContent) - 1) < 1 ? 0 : (parseInt(pageNum[prop].textContent) - 1);
-                window.scrollTo(0,0);
+                window.scrollTo(0, 0);
                 that.run();
             }
         }
@@ -86,7 +96,7 @@ MyArticle.prototype.handler = function (event) {
                 that.count = parseInt(len / 10);
                 return false;
             }
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
             that.run();
         } else if (event.target === last) {
             that.count--;
@@ -94,7 +104,7 @@ MyArticle.prototype.handler = function (event) {
                 that.count = 0;
                 return false;
             }
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
             that.run();
         }
     }

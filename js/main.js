@@ -1,19 +1,20 @@
 "use strict";
 // 处理数据，格式化时间并排序
+
 function dataHandle(data) {
     var newData = [];
     for (var prop in data) {
         newData = newData.concat(data[prop]);
     }
 
-    newData.sort(function(a, b) {
-        return new Date(b.time) - new Date(a.time)
-    })
-    newData.forEach(function(item) {
+    newData.sort(function (a, b) {
+        return new Date(b.time) - new Date(a.time);
+    });
+    newData.forEach(function (item) {
         // xxxx-xx-xx 格式
         item.time = item.time.slice(0, 10);
         // Jul xx xxx 格式
-        item.time = new Date(item.time).toDateString().slice(4)
+        item.time = new Date(item.time).toDateString().slice(4);
     });
 
     return newData;
