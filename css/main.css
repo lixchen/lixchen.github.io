@@ -51,7 +51,7 @@
 .main .page-num::after {
   content: '';
   position: absolute;
-  right: -20px;
+  left: -20px;
   top: 5px;
   display: block;
   width: 2px;
@@ -59,7 +59,7 @@
   background: #ddd;
   transform: skew(-20deg);
 }
-.main .page-num+.page-num::after {
+.main .last-page+.page-num::after {
   display: none;
 }
 
