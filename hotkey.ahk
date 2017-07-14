@@ -16,13 +16,14 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 	CapsLock & \:: Send 、
 	CapsLock & .:: Send 。
 	CapsLock & ,:: Send ，
-;selector
+	CapsLock & 9:: Send （）{left}
+;选择器
 	::getbi::getElementById('');{left 3}
 	::getbc::getElementsByClassName('');{left 3}
 	::getbt::getElementsByTagName('');{left 3}
 	::ques::querySelector('');{left 3}
 	::quesa::querySelectorAll('');{left 3}
-;timer
+;定时器
 	::sett::setTimeout(, 1000);{left 8}
 	::seti::setInterval(, 1000);{left 8}
 	::clei::clearInterval();{left 2}
@@ -32,14 +33,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 	::appc::appendChild();{left 2}
 ;Event
 	::adde::addEventListener('',, false);{left 11}
-;typecheck
+;类型检测
 	::objc::Object.prototype.toString.call('');{left 3}
 ;normal
 	::jav::JavaScript
 	::nodejs::Node.js
 	::jsc::javascript
-;css
-	::bgc::backgroundColor
 ;html
 ::begin::<{!}DOCTYPE html>{enter}<html lang="en">{enter}<head>{enter}<meta charset="UTF-8">{enter}<meta name="viewport" content="width=device-width, initial-scale=1.0">{enter}<meta http-equiv="X-UA-Compatible" content="ie=edge">{enter}<title>test</title>{enter}</head>{enter}<body>{enter 2}</body>{enter}</html>{up 2}
 
@@ -67,7 +66,7 @@ CapsLock & p::Run D:\日常软件\SumatraPDF\SumatraPDF.exe
 ;CMD
 CapsLock & r::Run cmd
 CapsLock & c::Run cmd2
-;SERVICES
+;系统服务
 CapsLock & f::Run services.msc
 ;leanote
 CapsLock & n::Run D:\note\LeanoteDesk\Leanote.exe
@@ -89,7 +88,6 @@ else
    return
 }
 
-
 ;leanote 服务器
 !n::
 {
@@ -110,8 +108,6 @@ Sleep 300
 Send browser-sync start --server --files "css/*.css, *.html"{enter}
 return
 }
-
-
 
 ;创建文件 输入法需要默认为英文
 CreateFile(lxc) 

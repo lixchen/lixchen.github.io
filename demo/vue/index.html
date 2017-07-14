@@ -8,19 +8,28 @@
 </head>
 
 <body>
-  <div id="example">
-    <child my-message="hello!"></child>
-  </div>
-  <script src="../../lib/js/vue.js"></script>
+ <div id="app">
+  <p>Original message: "{{ message }}"</p>
+  <p>Computed reversed message: "{{ reversedMessage() }}"</p>
+</div>
+  <script src="https://unpkg.com/vue"></script>
   <script>
-    Vue.component('child', {
-      props: ['myMessage'],
-      template: `<span>${this.props}</span>`
-    })
-
-    new Vue({
-      el: '#example'
-    })
+  var app = new Vue({
+  el: '#app',
+  data: {
+    message: 'computed test'
+  },
+  methods: {
+  reversedMessage: function() {
+    return this.message.split('').reverse().join('')
+  }
+},
+  computed: {
+    reversedMessage: function() {
+      return this.message.split('').reverse().join('')
+    }
+  }
+})
   </script>
 </body>
 
