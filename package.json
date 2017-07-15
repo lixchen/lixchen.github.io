@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build": "node run",
+    "build": "node build",
     "server": "browser-sync start --server --files '**.*'"
   }
 }
