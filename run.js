@@ -22,7 +22,7 @@ folders.forEach(function (item) {
 })
 
 // 写入数据
-fs.writeFile('./data.json', JSON.stringify(data));
+fs.writeFile('./data.json', JSON.stringify(data, null, 2));
 // 在控制台打印
 console.log(data);
 console.log(`\n数据载完成.`);

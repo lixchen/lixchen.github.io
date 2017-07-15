@@ -26,6 +26,10 @@
     8.  HTML-CSS-JS Prettify（格式化代码）
 
     9.  DocBlockr（注释）
+    
+    10. Boxy Theme（主题）
+    
+    11. A File Icon(侧栏图标)
 
     
  - 设置空格缩进

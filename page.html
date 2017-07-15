@@ -55,7 +55,7 @@
         data = dataHandle(JSON.parse(data));
         document.getElementById('time').innerHTML = data.filter(function(item) {
             return item.title === hash.substr(hash.indexOf('/') + 1);
-        })[0].time;
+        })[0].time.slice(0, 10);
     }
 
     function addContent(data) {
